@@ -14,27 +14,27 @@ defaultContentLanguageInSubdir = false
     [languages.zh.menu]
       [[languages.zh.menu.main]]
         name = "首页"
-        url = "/"
+        url = "/zh/"
         weight = 1
       [[languages.zh.menu.main]]
         name = "归档"
-        url = "/archives/"
+        url = "/zh/archives/"
         weight = 2
       [[languages.zh.menu.main]]
         name = "分类"
-        url = "/categories/"
+        url = "/zh/categories/"
         weight = 3
       [[languages.zh.menu.main]]
         name = "标签"
-        url = "/tags/"
+        url = "/zh/tags/"
         weight = 4
       [[languages.zh.menu.main]]
         name = "关于"
-        url = "/about/"
+        url = "/zh/about/"
         weight = 5
       [[languages.zh.menu.main]]
         name = "友链"
-        url = "/links/"
+        url = "/zh/links/"
         weight = 6
 
   [languages.en]
