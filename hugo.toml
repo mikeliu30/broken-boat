@@ -1,4 +1,4 @@
-baseURL = "https://blog.mikeliu30.cn/"
+baseURL = "https://mikeliu30.github.io/broken-boat/"
 theme = "reimu"
 defaultContentLanguage = "zh"
 defaultContentLanguageInSubdir = false
