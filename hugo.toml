@@ -59,9 +59,9 @@ defaultContentLanguageInSubdir = false
     head_end = '''
 <link rel="stylesheet" href="/broken-boat/css/custom.css">
 <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
-<div id="particles-js"></div>
 '''
     body_end = '''
+<div id="particles-js"></div>
 <div class="fixed-buttons">
   <button class="fixed-btn" id="bg-switch-btn" title="切换背景">🌄</button>
 </div>

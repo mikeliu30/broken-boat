@@ -1,6 +1,23 @@
 /* 背景层 */
 body {
   transition: background-image 0.5s ease-in-out;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+/* 隐藏主题 banner 大图区域，只保留导航栏 */
+#header img {
+  display: none !important;
+}
+#header {
+  min-height: 0 !important;
+  height: auto !important;
+  padding: 0 !important;
+}
+#header-outer,
+#header-title {
+  display: none !important;
 }
 
 /* 星空粒子层 */
