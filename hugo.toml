@@ -1,3 +1,147 @@
-baseURL = 'https://example.org/'
-locale = 'en-us'
-title = 'My New Hugo Project'
+baseURL = "https://mikeliu30.github.io/"
+theme = "reimu"
+defaultContentLanguage = "zh"
+defaultContentLanguageInSubdir = false
+
+[languages]
+  [languages.zh]
+    languageName = "中文"
+    languageCode = "zh-CN"
+    weight = 1
+    title = "破船之家"
+    [languages.zh.params]
+      subtitle = "破船不翻，代码相伴，生活不慌"
+    [languages.zh.menu]
+      [[languages.zh.menu.main]]
+        name = "首页"
+        url = "/"
+        weight = 1
+      [[languages.zh.menu.main]]
+        name = "归档"
+        url = "/archives/"
+        weight = 2
+      [[languages.zh.menu.main]]
+        name = "分类"
+        url = "/categories/"
+        weight = 3
+      [[languages.zh.menu.main]]
+        name = "标签"
+        url = "/tags/"
+        weight = 4
+      [[languages.zh.menu.main]]
+        name = "关于"
+        url = "/about/"
+        weight = 5
+      [[languages.zh.menu.main]]
+        name = "友链"
+        url = "/links/"
+        weight = 6
+
+  [languages.en]
+    languageName = "English"
+    languageCode = "en"
+    weight = 2
+    title = "Broken Ship Home"
+    [languages.en.params]
+      subtitle = "Code and life, side by side"
+    [languages.en.menu]
+      [[languages.en.menu.main]]
+        name = "Home"
+        url = "/en/"
+        weight = 1
+      [[languages.en.menu.main]]
+        name = "Archives"
+        url = "/en/archives/"
+        weight = 2
+      [[languages.en.menu.main]]
+        name = "Categories"
+        url = "/en/categories/"
+        weight = 3
+      [[languages.en.menu.main]]
+        name = "Tags"
+        url = "/en/tags/"
+        weight = 4
+      [[languages.en.menu.main]]
+        name = "About"
+        url = "/en/about/"
+        weight = 5
+      [[languages.en.menu.main]]
+        name = "Links"
+        url = "/en/links/"
+        weight = 6
+
+  [languages.ja]
+    languageName = "日本語"
+    languageCode = "ja"
+    weight = 3
+    title = "ブロークンシップホーム"
+    [languages.ja.params]
+      subtitle = "コードと生活、共に歩む"
+    [languages.ja.menu]
+      [[languages.ja.menu.main]]
+        name = "ホーム"
+        url = "/ja/"
+        weight = 1
+      [[languages.ja.menu.main]]
+        name = "アーカイブ"
+        url = "/ja/archives/"
+        weight = 2
+      [[languages.ja.menu.main]]
+        name = "カテゴリー"
+        url = "/ja/categories/"
+        weight = 3
+      [[languages.ja.menu.main]]
+        name = "タグ"
+        url = "/ja/tags/"
+        weight = 4
+      [[languages.ja.menu.main]]
+        name = "について"
+        url = "/ja/about/"
+        weight = 5
+      [[languages.ja.menu.main]]
+        name = "リンク"
+        url = "/ja/links/"
+        weight = 6
+
+  [languages.ko]
+    languageName = "한국어"
+    languageCode = "ko"
+    weight = 4
+    title = "부서진 배의 집"
+    [languages.ko.params]
+      subtitle = "코드와 생활, 함께"
+    [languages.ko.menu]
+      [[languages.ko.menu.main]]
+        name = "홈"
+        url = "/ko/"
+        weight = 1
+      [[languages.ko.menu.main]]
+        name = "아카이브"
+        url = "/ko/archives/"
+        weight = 2
+      [[languages.ko.menu.main]]
+        name = "카테고리"
+        url = "/ko/categories/"
+        weight = 3
+      [[languages.ko.menu.main]]
+        name = "태그"
+        url = "/ko/tags/"
+        weight = 4
+      [[languages.ko.menu.main]]
+        name = "소개"
+        url = "/ko/about/"
+        weight = 5
+      [[languages.ko.menu.main]]
+        name = "링크"
+        url = "/ko/links/"
+        weight = 6
+
+[params]
+  author = "mikeliu30"
+  github = "https://github.com/mikeliu30"
+  since = 2026
+
+[markup]
+  [markup.highlight]
+    style = "monokai"
+    lineNos = true
