@@ -1,0 +1,60 @@
+/* 背景层 */
+body {
+  transition: background-image 0.5s ease-in-out;
+}
+
+/* 星空粒子层 */
+#particles-js {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* 确保内容在粒子层上方 */
+.wrapper, header, footer, main, nav {
+  position: relative;
+  z-index: 1;
+}
+
+/* 右下角固定按钮组 */
+.fixed-buttons {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.fixed-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(30, 30, 30, 0.75);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(6px);
+  transition: transform 0.2s, background 0.2s;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+}
+
+.fixed-btn:hover {
+  background: rgba(80, 80, 200, 0.85);
+  transform: scale(1.1);
+}
+
+/* 文章卡片倾斜效果增强 */
+.post-card {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
