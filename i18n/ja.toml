@@ -1,0 +1,27 @@
+[readMore]
+other = "続きを読む"
+
+[wordCount]
+other = "文字数：{{ .Count }}"
+
+[readingTime]
+one = "読了時間：1 分"
+other = "読了時間：{{ .Count }} 分"
+
+[recentPosts]
+other = "最新記事"
+
+[categories]
+other = "カテゴリー"
+
+[tags]
+other = "タグ"
+
+[search]
+other = "検索"
+
+[backToTop]
+other = "トップへ戻る"
+
+[switchBg]
+other = "背景を切り替え"

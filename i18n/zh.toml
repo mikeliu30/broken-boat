@@ -1,0 +1,27 @@
+[readMore]
+other = "阅读更多"
+
+[wordCount]
+other = "字数：{{ .Count }}"
+
+[readingTime]
+one = "阅读时长：1 分钟"
+other = "阅读时长：{{ .Count }} 分钟"
+
+[recentPosts]
+other = "最新文章"
+
+[categories]
+other = "分类"
+
+[tags]
+other = "标签"
+
+[search]
+other = "搜索"
+
+[backToTop]
+other = "回到顶部"
+
+[switchBg]
+other = "切换背景"

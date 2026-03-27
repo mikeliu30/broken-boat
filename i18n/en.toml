@@ -1,0 +1,27 @@
+[readMore]
+other = "Read More"
+
+[wordCount]
+other = "Words: {{ .Count }}"
+
+[readingTime]
+one = "Reading time: 1 minute"
+other = "Reading time: {{ .Count }} minutes"
+
+[recentPosts]
+other = "Recent Posts"
+
+[categories]
+other = "Categories"
+
+[tags]
+other = "Tags"
+
+[search]
+other = "Search"
+
+[backToTop]
+other = "Back to Top"
+
+[switchBg]
+other = "Switch Background"

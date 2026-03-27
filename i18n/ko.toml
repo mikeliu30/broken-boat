@@ -1,0 +1,27 @@
+[readMore]
+other = "더 읽기"
+
+[wordCount]
+other = "단어 수：{{ .Count }}"
+
+[readingTime]
+one = "읽기 시간：1 분"
+other = "읽기 시간：{{ .Count }} 분"
+
+[recentPosts]
+other = "최근 게시물"
+
+[categories]
+other = "카테고리"
+
+[tags]
+other = "태그"
+
+[search]
+other = "검색"
+
+[backToTop]
+other = "맨 위로"
+
+[switchBg]
+other = "배경 전환"
