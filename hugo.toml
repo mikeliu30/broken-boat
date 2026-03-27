@@ -142,6 +142,24 @@ defaultContentLanguageInSubdir = false
   since = 2026
   avatar = "avatar.jpg"
 
+  [params.injector]
+    head_end = '''
+<link rel="stylesheet" href="/broken-boat/css/custom.css">
+<link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+<div id="particles-js"></div>
+'''
+    body_end = '''
+<div class="fixed-buttons">
+  <button class="fixed-btn" id="bg-switch-btn" title="切换背景">🌄</button>
+  <button class="fixed-btn" id="back-to-top" title="回到顶部" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://unpkg.com/vanilla-tilt@1.8.1/dist/vanilla-tilt.min.js"></script>
+<script src="/broken-boat/js/bg-switcher.js"></script>
+<script src="/broken-boat/js/effects.js"></script>
+'''
+
 [markup]
   [markup.highlight]
     style = "monokai"
