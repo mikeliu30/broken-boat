@@ -140,7 +140,7 @@ defaultContentLanguageInSubdir = false
   author = "mikeliu30"
   github = "https://github.com/mikeliu30"
   since = 2026
-  avatar = "/images/avatar.jpg"
+  avatar = "avatar.jpg"
 
 [markup]
   [markup.highlight]
