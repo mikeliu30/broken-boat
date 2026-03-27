@@ -1,9 +1,8 @@
 (function () {
   // 背景图列表 — 用户将图片放入 static/images/bg/ 后在此配置
   const backgrounds = [
-    '/images/bg/bg1.jpg',
-    '/images/bg/bg2.jpg',
-    '/images/bg/bg3.jpg',
+    '/broken-boat/images/bg/bg1.jpg',
+    '/broken-boat/images/bg/bg2.jpg',
   ];
 
   const STORAGE_KEY = 'broken-ship-bg-index';
