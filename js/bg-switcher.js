@@ -14,10 +14,11 @@
 
   function applyBackground(index) {
     const safeIndex = ((index % backgrounds.length) + backgrounds.length) % backgrounds.length;
-    document.body.style.backgroundImage = `url('${backgrounds[safeIndex]}')`;
-    document.body.style.backgroundSize = 'cover';
-    document.body.style.backgroundPosition = 'center';
-    document.body.style.backgroundAttachment = 'fixed';
+    const target = document.documentElement;
+    target.style.backgroundImage = `url('${backgrounds[safeIndex]}')`;
+    target.style.backgroundSize = 'cover';
+    target.style.backgroundPosition = 'center';
+    target.style.backgroundAttachment = 'fixed';
     localStorage.setItem(STORAGE_KEY, safeIndex);
   }
 
