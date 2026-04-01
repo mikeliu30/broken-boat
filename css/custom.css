@@ -1,5 +1,6 @@
 /* 背景层 */
 html {
+  background-color: transparent !important;
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -7,8 +8,8 @@ html {
 }
 
 body {
-  transition: background-image 0.5s ease-in-out;
-  background: transparent;
+  background-color: transparent !important;
+  background: transparent !important;
 }
 
 /* 完全折叠 banner 区域，只保留 fixed 导航栏 */
