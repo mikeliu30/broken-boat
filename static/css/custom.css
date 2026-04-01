@@ -12,6 +12,13 @@ body {
   background: transparent !important;
 }
 
+/* 覆盖主题容器背景，让背景图透出来 */
+#container,
+#wrap {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
 /* 完全折叠 banner 区域，只保留 fixed 导航栏 */
 #header {
   height: 0 !important;
