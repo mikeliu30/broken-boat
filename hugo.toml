@@ -56,6 +56,20 @@ defaultContentLanguageInSubdir = false
     url = "zh/links"
 
   [params.injector]
+    head_begin = '''
+<script>
+(function(){
+  var bgs=['/broken-boat/images/bg/bg1.jpg','/broken-boat/images/bg/bg2.jpg'];
+  var i=parseInt(localStorage.getItem('broken-ship-bg-index')||'0',10);
+  i=((i%bgs.length)+bgs.length)%bgs.length;
+  var h=document.documentElement;
+  h.style.backgroundImage="url('"+bgs[i]+"')";
+  h.style.backgroundSize='cover';
+  h.style.backgroundPosition='center';
+  h.style.backgroundAttachment='fixed';
+})();
+</script>
+'''
     head_end = '''
 <link rel="stylesheet" href="/broken-boat/css/custom.css">
 <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
@@ -63,7 +77,7 @@ defaultContentLanguageInSubdir = false
     body_end = '''
 <div id="particles-js"></div>
 <div class="fixed-buttons">
-  <button class="fixed-btn" id="bg-switch-btn" title="切换背景">🌄</button>
+  <button class="fixed-btn" id="bg-switch-btn" title="切换背景">✨</button>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>

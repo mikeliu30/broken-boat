@@ -1,9 +1,14 @@
 /* 背景层 */
-body {
-  transition: background-image 0.5s ease-in-out;
+html {
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
+  min-height: 100vh;
+}
+
+body {
+  transition: background-image 0.5s ease-in-out;
+  background: transparent;
 }
 
 /* 隐藏主题 banner 大图区域，只保留导航栏 */
@@ -40,7 +45,7 @@ body {
 /* 右下角固定按钮组 */
 .fixed-buttons {
   position: fixed;
-  bottom: 24px;
+  bottom: 80px;
   right: 24px;
   z-index: 999;
   display: flex;
