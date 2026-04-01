@@ -31,9 +31,15 @@
   document.addEventListener('DOMContentLoaded', function () {
     applyBackground(getCurrentIndex());
 
-    const btn = document.getElementById('bg-switch-btn');
-    if (btn) {
+    // 动态创建按钮并插入顶栏右侧
+    const nav = document.getElementById('header-nav');
+    if (nav) {
+      const btn = document.createElement('button');
+      btn.id = 'bg-switch-btn';
+      btn.title = '切换背景';
+      btn.textContent = '✨';
       btn.addEventListener('click', switchBackground);
+      nav.appendChild(btn);
     }
   });
 })();
