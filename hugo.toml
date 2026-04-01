@@ -63,10 +63,12 @@ defaultContentLanguageInSubdir = false
   var i=parseInt(localStorage.getItem('broken-ship-bg-index')||'0',10);
   i=((i%bgs.length)+bgs.length)%bgs.length;
   var h=document.documentElement;
+  h.style.backgroundColor='transparent';
   h.style.backgroundImage="url('"+bgs[i]+"')";
   h.style.backgroundSize='cover';
   h.style.backgroundPosition='center';
   h.style.backgroundAttachment='fixed';
+  document.body && (document.body.style.backgroundColor='transparent');
 })();
 </script>
 '''
