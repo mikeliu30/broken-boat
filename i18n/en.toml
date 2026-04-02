@@ -1,27 +1,187 @@
+[home]
+other = "Home"
+
+[about]
+other = "About"
+
+[friend]
+other = "Links"
+
+[archives]
+other = "Archives"
+
+[categories]
+other = "Categories"
+
+[category]
+other = "Category"
+
+[tags]
+other = "Tags"
+
+[tag]
+other = "Tag"
+
+[tagcloud]
+other = "Tag Cloud"
+
+[search]
+other = "Search"
+
+[toc]
+other = "Contents"
+
+[more]
+other = "More"
+
 [readMore]
 other = "Read More"
+
+[recentPosts]
+other = "Recent Posts"
+
+[recent_posts]
+other = "Recent Posts"
 
 [wordCount]
 other = "Words: {{ .Count }}"
 
 [readingTime]
-one = "Reading time: 1 minute"
-other = "Reading time: {{ .Count }} minutes"
+one = "Reading time: 1 min"
+other = "Reading time: {{ .Count }} min"
 
-[recentPosts]
-other = "Recent Posts"
+[prev]
+other = "Prev"
 
-[categories]
-other = "Categories"
+[next]
+other = "Next"
 
-[tags]
-other = "Tags"
+[newer]
+other = "Newer"
 
-[search]
-other = "Search"
+[older]
+other = "Older"
+
+[comment]
+other = "Comments"
+
+[reading]
+other = "Views"
+
+[share]
+other = "Share"
+
+[powered_by]
+other = "Powered by"
+
+[rss_feed]
+other = "RSS Feed"
 
 [backToTop]
 other = "Back to Top"
 
 [switchBg]
 other = "Switch Background"
+
+[sticky]
+other = "Sticky"
+
+[sponsor]
+other = "Sponsor"
+
+[tweets]
+other = "Tweets"
+
+[page]
+other = "Page {{ . }}"
+
+[archive_a]
+other = "Archives"
+
+[archive_b]
+other = "Archives: {{ . }}"
+
+[sidebar]
+[sidebar.post]
+other = "Posts"
+[sidebar.category]
+other = "Categories"
+[sidebar.tag]
+other = "Tags"
+
+[not_found]
+[not_found.title]
+other = "4 0 4 (ﾟ⊿ﾟ)ﾂ"
+[not_found.subtitle]
+other = "Page Not Found"
+
+[post]
+[post.count]
+one = "{{- . }} word"
+other = "{{- . }} words"
+[post.time]
+one = "{{- . }} min"
+other = "{{- . }} min"
+
+[busuanzi]
+[busuanzi.pv]
+other = "Total Views"
+[busuanzi.uv]
+other = "Total Visitors"
+
+[service_worker]
+[service_worker.title]
+other = "New Version Available"
+[service_worker.content]
+other = "New content available, update now?"
+[service_worker.confirm]
+other = "Update"
+[service_worker.cancel]
+other = "Cancel"
+
+[home_categories]
+[home_categories.count]
+one = "{{- . }} post"
+other = "{{- . }} posts"
+
+[article_copyright]
+[article_copyright.author]
+other = "Author: "
+[article_copyright.permalink]
+other = "Permalink: "
+[article_copyright.title]
+other = "Title: "
+[article_copyright.date]
+other = "Published: "
+[article_copyright.updated]
+other = "Updated: "
+[article_copyright.license]
+other = "License: "
+[article_copyright.license_content]
+other = "All posts on this blog are licensed under {{ . }} unless otherwise stated."
+
+[multi_language]
+[multi_language.not_found]
+other = "No translation available for this post"
+
+[rss]
+[rss.author]
+other = "Author: {{ .name }} ({{ .email }})"
+[rss.date]
+other = "First published {{ .pubDate }} at {{ .content }}, last modified {{ .lastmod }}"
+
+[algolia]
+[algolia.input_placeholder]
+other = "Search..."
+[algolia.hits_empty]
+other = "No results for \"${query}\""
+[algolia.hits_stats]
+other = "${hits} results (${time} ms)"
+
+[heat_map_card]
+[heat_map_card.no_articles]
+other = "No articles"
+[heat_map_card.words]
+other = "words"
+[heat_map_card.total_articles]
+other = "$1 articles, $2 words in total"

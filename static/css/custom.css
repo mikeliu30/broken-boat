@@ -72,54 +72,6 @@ body {
   transform: translateY(-50%) scale(1.15);
 }
 
-/* 隐藏 Hugo 原语言切换器，改用 Google Translate */
-#i18n-nav {
-  display: none !important;
-}
-
-/* Google Translate 组件定位到顶栏右侧 */
-#google_translate_element {
-  position: fixed;
-  top: 0;
-  right: 100px;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  z-index: 300;
-}
-
-/* 清理 Google Translate 默认样式 */
-#google_translate_element .goog-te-gadget {
-  font-size: 0 !important;
-}
-
-#google_translate_element .goog-te-gadget select {
-  background: transparent;
-  border: 1px solid rgba(255,255,255,0.3);
-  border-radius: 6px;
-  color: var(--red-0, #e74c3c);
-  font-size: 13px;
-  padding: 4px 6px;
-  cursor: pointer;
-  outline: none;
-  transition: border 0.2s;
-}
-
-#google_translate_element .goog-te-gadget select:hover {
-  border-color: var(--red-0, #e74c3c);
-}
-
-/* 隐藏 Google Translate 顶部横幅 */
-.goog-te-banner-frame,
-#goog-gt-tt,
-.goog-te-balloon-frame {
-  display: none !important;
-}
-
-body {
-  top: 0 !important;
-}
-
 /* 文章卡片倾斜效果增强 */
 .post-card {
   transform-style: preserve-3d;

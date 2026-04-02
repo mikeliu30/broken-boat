@@ -1,5 +1,47 @@
+[home]
+other = "ホーム"
+
+[about]
+other = "について"
+
+[friend]
+other = "リンク"
+
+[archives]
+other = "アーカイブ"
+
+[categories]
+other = "カテゴリー"
+
+[category]
+other = "カテゴリー"
+
+[tags]
+other = "タグ"
+
+[tag]
+other = "タグ"
+
+[tagcloud]
+other = "タグクラウド"
+
+[search]
+other = "検索"
+
+[toc]
+other = "目次"
+
+[more]
+other = "もっと見る"
+
 [readMore]
 other = "続きを読む"
+
+[recentPosts]
+other = "最新記事"
+
+[recent_posts]
+other = "最新記事"
 
 [wordCount]
 other = "文字数：{{ .Count }}"
@@ -8,20 +50,138 @@ other = "文字数：{{ .Count }}"
 one = "読了時間：1 分"
 other = "読了時間：{{ .Count }} 分"
 
-[recentPosts]
-other = "最新記事"
+[prev]
+other = "前へ"
 
-[categories]
-other = "カテゴリー"
+[next]
+other = "次へ"
 
-[tags]
-other = "タグ"
+[newer]
+other = "新しい記事"
 
-[search]
-other = "検索"
+[older]
+other = "古い記事"
+
+[comment]
+other = "コメント"
+
+[reading]
+other = "閲覧数"
+
+[share]
+other = "シェア"
+
+[powered_by]
+other = "Powered by"
+
+[rss_feed]
+other = "RSS フィード"
 
 [backToTop]
 other = "トップへ戻る"
 
 [switchBg]
 other = "背景を切り替え"
+
+[sticky]
+other = "固定"
+
+[sponsor]
+other = "スポンサー"
+
+[tweets]
+other = "ツイート"
+
+[page]
+other = "{{ . }} ページ"
+
+[archive_a]
+other = "アーカイブ"
+
+[archive_b]
+other = "アーカイブ：{{ . }}"
+
+[sidebar]
+[sidebar.post]
+other = "記事"
+[sidebar.category]
+other = "カテゴリー"
+[sidebar.tag]
+other = "タグ"
+
+[not_found]
+[not_found.title]
+other = "4 0 4 (ﾟ⊿ﾟ)ﾂ"
+[not_found.subtitle]
+other = "満 身 創 痍"
+
+[post]
+[post.count]
+one = "{{- . }} 字"
+other = "{{- . }} 字"
+[post.time]
+one = "{{- . }} 分"
+other = "{{- . }} 分"
+
+[busuanzi]
+[busuanzi.pv]
+other = "総閲覧数"
+[busuanzi.uv]
+other = "総訪問者数"
+
+[service_worker]
+[service_worker.title]
+other = "新バージョンあり"
+[service_worker.content]
+other = "新しいコンテンツがあります。更新しますか？"
+[service_worker.confirm]
+other = "更新"
+[service_worker.cancel]
+other = "キャンセル"
+
+[home_categories]
+[home_categories.count]
+one = "{{- . }} 件"
+other = "{{- . }} 件"
+
+[article_copyright]
+[article_copyright.author]
+other = "著者："
+[article_copyright.permalink]
+other = "リンク："
+[article_copyright.title]
+other = "タイトル："
+[article_copyright.date]
+other = "公開日："
+[article_copyright.updated]
+other = "更新日："
+[article_copyright.license]
+other = "ライセンス："
+[article_copyright.license_content]
+other = "このブログの全記事は特別な記載がない限り {{ . }} ライセンスに従います。"
+
+[multi_language]
+[multi_language.not_found]
+other = "この記事の翻訳版はありません"
+
+[rss]
+[rss.author]
+other = "著者：{{ .name }}（{{ .email }}）"
+[rss.date]
+other = "{{ .pubDate }} に {{ .content }} で初公開、最終更新 {{ .lastmod }}"
+
+[algolia]
+[algolia.input_placeholder]
+other = "検索..."
+[algolia.hits_empty]
+other = "「${query}」に関する結果が見つかりません"
+[algolia.hits_stats]
+other = "${hits} 件（${time} ms）"
+
+[heat_map_card]
+[heat_map_card.no_articles]
+other = "記事なし"
+[heat_map_card.words]
+other = "字"
+[heat_map_card.total_articles]
+other = "合計 $1 記事、$2 字"

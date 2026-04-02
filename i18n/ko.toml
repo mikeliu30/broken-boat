@@ -1,5 +1,47 @@
+[home]
+other = "홈"
+
+[about]
+other = "소개"
+
+[friend]
+other = "링크"
+
+[archives]
+other = "아카이브"
+
+[categories]
+other = "카테고리"
+
+[category]
+other = "카테고리"
+
+[tags]
+other = "태그"
+
+[tag]
+other = "태그"
+
+[tagcloud]
+other = "태그 클라우드"
+
+[search]
+other = "검색"
+
+[toc]
+other = "목차"
+
+[more]
+other = "더 보기"
+
 [readMore]
 other = "더 읽기"
+
+[recentPosts]
+other = "최근 게시물"
+
+[recent_posts]
+other = "최근 게시물"
 
 [wordCount]
 other = "단어 수：{{ .Count }}"
@@ -8,20 +50,138 @@ other = "단어 수：{{ .Count }}"
 one = "읽기 시간：1 분"
 other = "읽기 시간：{{ .Count }} 분"
 
-[recentPosts]
-other = "최근 게시물"
+[prev]
+other = "이전"
 
-[categories]
-other = "카테고리"
+[next]
+other = "다음"
 
-[tags]
-other = "태그"
+[newer]
+other = "최신 글"
 
-[search]
-other = "검색"
+[older]
+other = "이전 글"
+
+[comment]
+other = "댓글"
+
+[reading]
+other = "조회수"
+
+[share]
+other = "공유"
+
+[powered_by]
+other = "Powered by"
+
+[rss_feed]
+other = "RSS 피드"
 
 [backToTop]
 other = "맨 위로"
 
 [switchBg]
 other = "배경 전환"
+
+[sticky]
+other = "고정"
+
+[sponsor]
+other = "후원"
+
+[tweets]
+other = "트윗"
+
+[page]
+other = "{{ . }} 페이지"
+
+[archive_a]
+other = "아카이브"
+
+[archive_b]
+other = "아카이브：{{ . }}"
+
+[sidebar]
+[sidebar.post]
+other = "글"
+[sidebar.category]
+other = "카테고리"
+[sidebar.tag]
+other = "태그"
+
+[not_found]
+[not_found.title]
+other = "4 0 4 (ﾟ⊿ﾟ)ﾂ"
+[not_found.subtitle]
+other = "페이지를 찾을 수 없습니다"
+
+[post]
+[post.count]
+one = "{{- . }} 자"
+other = "{{- . }} 자"
+[post.time]
+one = "{{- . }} 분"
+other = "{{- . }} 분"
+
+[busuanzi]
+[busuanzi.pv]
+other = "총 조회수"
+[busuanzi.uv]
+other = "총 방문자수"
+
+[service_worker]
+[service_worker.title]
+other = "새 버전 발견"
+[service_worker.content]
+other = "새 콘텐츠가 있습니다. 업데이트할까요？"
+[service_worker.confirm]
+other = "업데이트"
+[service_worker.cancel]
+other = "취소"
+
+[home_categories]
+[home_categories.count]
+one = "{{- . }} 편"
+other = "{{- . }} 편"
+
+[article_copyright]
+[article_copyright.author]
+other = "작성자："
+[article_copyright.permalink]
+other = "링크："
+[article_copyright.title]
+other = "제목："
+[article_copyright.date]
+other = "게시일："
+[article_copyright.updated]
+other = "수정일："
+[article_copyright.license]
+other = "라이선스："
+[article_copyright.license_content]
+other = "이 블로그의 모든 글은 특별한 명시가 없는 한 {{ . }} 라이선스를 따릅니다."
+
+[multi_language]
+[multi_language.not_found]
+other = "이 글의 번역본을 찾을 수 없습니다"
+
+[rss]
+[rss.author]
+other = "작성자：{{ .name }}（{{ .email }}）"
+[rss.date]
+other = "{{ .pubDate }} {{ .content }} 최초 게시, 최종 수정 {{ .lastmod }}"
+
+[algolia]
+[algolia.input_placeholder]
+other = "검색..."
+[algolia.hits_empty]
+other = "「${query}」에 대한 결과가 없습니다"
+[algolia.hits_stats]
+other = "${hits}개 결과（${time} ms）"
+
+[heat_map_card]
+[heat_map_card.no_articles]
+other = "글 없음"
+[heat_map_card.words]
+other = "자"
+[heat_map_card.total_articles]
+other = "총 $1 편, $2 자"
