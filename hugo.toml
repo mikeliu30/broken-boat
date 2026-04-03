@@ -41,6 +41,10 @@ defaultContentLanguageInSubdir = false
   github = "https://github.com/mikeliu30"
   since = 2026
   avatar = "avatar.jpg"
+  widgets = ["category", "tag", "recent_posts"]
+
+  [params.sidebar]
+    position = "left"
 
   [[params.menu]]
     name = "home"
