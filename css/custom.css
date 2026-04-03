@@ -19,13 +19,22 @@ body {
   background-color: transparent !important;
 }
 
-/* 完全折叠 banner 区域，只保留 fixed 导航栏 */
+/* 恢复 Header 展示并修正层级，确保不遮挡背景和侧边栏 */
 #header {
-  height: 0 !important;
-  min-height: 0 !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  overflow: hidden !important;
+  position: relative;
+  z-index: 10;
+  background: transparent !important;
+}
+
+#header img {
+  /* 确保横幅图片不遮挡页面内容 */
+  z-index: -1 !important;
+}
+
+/* 确保内容区域和侧边栏有足够层级，不会被 header 遮挡 */
+#content {
+  position: relative;
+  z-index: 20;
 }
 
 /* 星空粒子层 */
