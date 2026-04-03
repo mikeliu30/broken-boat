@@ -129,3 +129,14 @@ body {
   transform-style: preserve-3d;
   will-change: transform;
 }
+
+/* 让主内容区为 flex 列布局，页码始终沉底 */
+#main {
+  display: flex;
+  flex-direction: column;
+  min-height: 60vh;
+}
+
+#page-nav {
+  margin-top: auto !important;
+}

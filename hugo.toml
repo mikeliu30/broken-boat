@@ -41,6 +41,7 @@ defaultContentLanguageInSubdir = false
   github = "https://github.com/mikeliu30"
   since = 2026
   avatar = "avatar.jpg"
+  description = "努力搬砖学技术中..."
   widgets = ["category", "tag", "recent_posts"]
 
   [params.sidebar]
