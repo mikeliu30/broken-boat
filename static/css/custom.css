@@ -19,22 +19,65 @@ body {
   background-color: transparent !important;
 }
 
-/* 恢复 Header 展示并修正层级，确保不遮挡背景和侧边栏 */
+/* 彻底隐藏 Header Banner 及标题，让出页面空间 */
 #header {
-  position: relative;
-  z-index: 10;
+  min-height: 0 !important;
+  height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+}
+
+#header img,
+#header-title {
+  display: none !important;
+}
+
+/* 将导航栏（首页、归档等）移动到右上角透明悬浮 */
+#header-nav {
+  position: absolute !important;
+  top: 20px !important;
+  right: 20px !important;
+  left: auto !important;
+  width: auto !important;
   background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 10px;
+  border-radius: 20px;
+  backdrop-filter: blur(5px);
 }
 
-#header img {
-  /* 确保横幅图片不遮挡页面内容 */
-  z-index: -1 !important;
+/* 悬停时稍微加深背景 */
+#header-nav:hover {
+  background: rgba(0, 0, 0, 0.2) !important;
 }
 
-/* 确保内容区域和侧边栏有足够层级，不会被 header 遮挡 */
+/* 调整菜单项的文字颜色和间距 */
+.main-nav-link {
+  color: #fff !important;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+}
+.main-nav-icon {
+  color: #fff !important;
+}
+
+/* 修复右上角切换背景按钮的位置 */
+#bg-switch-btn {
+  position: relative !important;
+  right: 0 !important;
+  top: 0 !important;
+  transform: none !important;
+  display: flex;
+  align-items: center;
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+}
+
+/* 提升内容区域位置，避免上方留出巨大空白 */
 #content {
   position: relative;
   z-index: 20;
+  margin-top: 80px !important;
 }
 
 /* 星空粒子层 */
