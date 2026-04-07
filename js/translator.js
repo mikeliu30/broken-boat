@@ -19,11 +19,39 @@
     '#main blockquote',
     '#main td',
     '#main th',
-    '#main .sidebar-description',
   ].join(', ');
 
   let savedTexts = null; // 保存原始内容用于还原
   let isTranslating = false;
+  let blockNavigation = false; // 拦截主题的 window.location 跳转
+
+  // 拦截 window.location 赋值，阻止主题跳转
+  const origDescriptor = Object.getOwnPropertyDescriptor(window, 'location');
+  let _locationOverridden = false;
+
+  function patchLocation() {
+    if (_locationOverridden) return;
+    _locationOverridden = true;
+    try {
+      Object.defineProperty(window, 'location', {
+        get: function () {
+          return origDescriptor ? origDescriptor.get.call(window) : location;
+        },
+        set: function (url) {
+          if (blockNavigation) return; // 翻译时忽略跳转
+          if (origDescriptor && origDescriptor.set) {
+            origDescriptor.set.call(window, url);
+          } else {
+            window.location.href = url;
+          }
+        },
+        configurable: true,
+      });
+    } catch (e) {
+      // 某些浏览器不允许重定义 window.location，降级到其他方案
+      _locationOverridden = false;
+    }
+  }
 
   // 调用 MyMemory API 翻译单段文字
   async function callMyMemory(text, langpair) {
@@ -97,7 +125,6 @@
     const langpair = LANG_PAIR[lang];
     const elements = Array.from(document.querySelectorAll(SELECTOR))
       .filter(el => {
-        const tag = el.tagName;
         // 跳过 code/pre 内的元素
         if (el.closest('code, pre')) return false;
         return el.textContent.trim().length > 0;
@@ -144,23 +171,8 @@
     }
   }
 
-  // 拦截语言切换器点击（capture 阶段，在主题自带事件之前触发）
-  document.addEventListener('click', function (e) {
-    const item = e.target.closest('#select-items li');
-    if (!item) return;
-
-    const lang = item.dataset.value;
-    if (!lang) return;
-
-    if (lang === 'zh') {
-      e.stopImmediatePropagation();
-      restorePage();
-    } else if (LANG_PAIR[lang]) {
-      e.stopImmediatePropagation();
-      translatePage(lang);
-    }
-
-    // 更新语言切换器 UI
+  // 更新切换器 UI
+  function updateSwitcherUI(item) {
     document.querySelectorAll('#select-items li').forEach(li => li.classList.remove('selected'));
     item.classList.add('selected');
     const selectedLang = document.getElementById('selected-lang');
@@ -169,5 +181,38 @@
     if (selectItems) selectItems.classList.remove('show');
     const selectSelected = document.getElementById('select-selected');
     if (selectSelected) selectSelected.setAttribute('aria-expanded', 'false');
-  }, true);
+  }
+
+  // 在 DOM ready 后，给每个 li 注册监听器
+  // 通过 blockNavigation 标志阻止主题的 window.location 跳转
+  function attachListeners() {
+    const items = document.querySelectorAll('#select-items li');
+    if (!items.length) return;
+
+    patchLocation();
+
+    items.forEach(function (item) {
+      item.addEventListener('click', function (e) {
+        const lang = item.dataset.value;
+        if (!lang) return;
+
+        if (lang === 'zh') {
+          // 允许导航（回到中文首页），同时还原译文
+          restorePage();
+        } else if (LANG_PAIR[lang]) {
+          // 阻止主题跳转，执行原地翻译
+          blockNavigation = true;
+          setTimeout(function () { blockNavigation = false; }, 500);
+          updateSwitcherUI(item);
+          translatePage(lang);
+        }
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', attachListeners);
+  } else {
+    attachListeners();
+  }
 })();
