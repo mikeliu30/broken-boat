@@ -88,6 +88,7 @@ defaultContentLanguageInSubdir = false
 <script src="https://unpkg.com/vanilla-tilt@1.8.1/dist/vanilla-tilt.min.js"></script>
 <script src="/broken-boat/js/bg-switcher.js"></script>
 <script src="/broken-boat/js/effects.js"></script>
+<script src="/broken-boat/js/translator.js"></script>
 '''
 
 [markup]
