@@ -37,6 +37,7 @@ defaultContentLanguageInSubdir = false
       subtitle = "코드와 생활, 함께"
 
 [params]
+  mainSections = ["posts"]
   author = "mikeliu30"
   github = "https://github.com/mikeliu30"
   since = 2026
