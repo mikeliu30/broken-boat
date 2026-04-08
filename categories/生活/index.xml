@@ -1,1 +1,198 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>生活 on 破船之家</title><link>https://mikeliu30.github.io/broken-boat/categories/%E7%94%9F%E6%B4%BB/</link><description>Recent content from 破船之家</description><generator>Hugo</generator><language>zh-CN</language><managingEditor>xxx@example.com (mikeliu30)</managingEditor><webMaster>xxx@example.com (mikeliu30)</webMaster><copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright><lastBuildDate/><atom:link href="https://mikeliu30.github.io/broken-boat/categories/%E7%94%9F%E6%B4%BB/index.xml" rel="self" type="application/rss+xml"/></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>生活 on 破船之家</title><link>https://mikeliu30.github.io/broken-boat/categories/%E7%94%9F%E6%B4%BB/</link><description>Recent content from 破船之家</description><generator>Hugo</generator><language>zh-CN</language><managingEditor>xxx@example.com (mikeliu30)</managingEditor><webMaster>xxx@example.com (mikeliu30)</webMaster><copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright><lastBuildDate>Tue, 07 Apr 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://mikeliu30.github.io/broken-boat/categories/%E7%94%9F%E6%B4%BB/index.xml" rel="self" type="application/rss+xml"/><item><title>你好，我是 Liu</title><link>https://mikeliu30.github.io/broken-boat/zh/post/hello/</link><pubDate>Tue, 07 Apr 2026 00:00:00 +0000</pubDate><author>xxx@example.com (mikeliu30)</author><guid>https://mikeliu30.github.io/broken-boat/zh/post/hello/</guid><description>
+<![CDATA[<h1>你好，我是 Liu</h1><p>作者：mikeliu30（xxx@example.com）</p>
+        
+          <h2 id="关于我">
+<a class="header-anchor" href="#%e5%85%b3%e4%ba%8e%e6%88%91"></a>
+关于我
+</h2><p>这里是我的个人博客，也不只是一个博客。</p>
+<p>我记录写日常的工作、生活、相关的技术和感悟。</p>
+<p>我更想做到的就是一个人好好的生活，经营好我的生活，不断的再体验中学习，生活就是不断的Get Better的过程。保持着进步的想法，多去关心身边的的人，帮助他人和得到认可亦是实现自我的一种方式。</p>
+<p>这个博客之内会有方法、理解、生活日常的记录。也会有积攒的情绪爆发的时候，也是不可缺失的一部分，遇到问题，不能逃避，面对才是方法，即便是错了也没关系，反正逃避也是错误。这些都是我们一起所经历的事——<strong>生活。</strong></p>
+<h2 id="开端">
+<a class="header-anchor" href="#%e5%bc%80%e7%ab%af"></a>
+开端
+</h2><p>从第一次填报志愿滑档，感觉就是命中注定一样，选择了学校，选择了专业。在这期间，我也经历了自暴自弃，上大学的时候也完了很久，真的是很久啊，两年半，哈哈哈（我真不是小黑子）。</p>
+<p>在意识到快要实习找工作但是自己什么都不会的时候才开始进行学习，也考虑过考研，考公或者继续学习技术去干硬件。换过很多方向，期间也遇到了很多人，亦师亦友，教会了我很多，不管对我怎么样，都让我学到了东西。最后呢，如大家所见，找到了实习，当上了程序员，甚至我在收到offer的时候我也是愣神的，真的是意料之外。但是我还是没变，还是那个什么都不懂，经常闯祸的傻小子。</p>
+<h2 id="日常的经历">
+<a class="header-anchor" href="#%e6%97%a5%e5%b8%b8%e7%9a%84%e7%bb%8f%e5%8e%86"></a>
+日常的经历
+</h2><ul>
+<li>寒暑假实习的时候去打过工干过安检，送过外卖，当过服务生，认识了许多朋友，更见到了各种形形色色的人
+<img src="/broken-boat/images/work.jpg" alt="摸鱼 ing"                            
+style="float:right;width:220px;margin:0 0 16px 24px;border:6px solid
+#fff;border-radius:4px;box-shadow:0 4px 16px rgba(0,0,0,0.5);">
+<p style="float:right;width:220px;text-align:center;margin:0 0 16px
+24px;color:#aaa;font-size:13px;font-style:italic;">摸鱼 ing</p> 
+</li>
+<li>也和朋友一起做了设计，做了自己的硬件的玩具出来
+<img src="/broken-boat/images/tools.jpg" alt="AI小智"></li>
+<li>研究过 AI、自动化、系统搭建</li>
+<li>写过文章，记录过思考</li>
+</ul>
+<h2 id="体验的生活">
+<a class="header-anchor" href="#%e4%bd%93%e9%aa%8c%e7%9a%84%e7%94%9f%e6%b4%bb"></a>
+体验的生活
+</h2><p>去了很多地方，镇江，西藏，新疆，南昌等等的地方，看到了许多风景，见到了久违的朋友，体验不同生活
+<div class="gallery-wall" id="photoWall-22d1b2a7f"></div>
+<script>
+  (function() {
+    const imageUrls = JSON.parse("[\"/broken-boat/zh/post/hello/%E5%8D%97%E6%98%8C.jpg\",\"/broken-boat/zh/post/hello/%E8%A5%BF%E8%97%8F.jpg\",\"/broken-boat/zh/post/hello/%E7%BA%B3%E6%9C%A8%E9%94%99.jpg\",\"/broken-boat/zh/post/hello/%E8%A5%BF%E6%B4%A5%E6%B8%A1.jpg\",\"/broken-boat/zh/post/hello/%E5%9C%A8%E8%B7%AF%E4%B8%8A.jpg\"]");
+    let images = [];
+    const wallId = '#photoWall-22d1b2a7f';
+    let resizeTimer;
+    let lastWidth = 0;
+    
+    function init() {
+      createInitialDOM();
+      loadImages();
+      const wall = _$(wallId);
+      if (wall && window.ResizeObserver) {
+        const observer = new ResizeObserver((entries) => {
+          const newWidth = entries[0].contentRect.width;
+          if (Math.abs(newWidth - lastWidth) > 1) {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(renderPhotoWall, 250);
+          }
+        });
+        observer.observe(wall);
+      } else {
+        window.addEventListener('resize', handleResize);
+      }
+    }
+    
+    function createInitialDOM() {
+      const wall = _$(wallId);
+      if (!wall || !imageUrls.length) return;
+      
+      wall.style.opacity = '0';
+      wall.style.pointerEvents = 'none';
+      
+      imageUrls.forEach((url) => {
+        images.push({
+          width: 800,
+          height: 600,
+          aspectRatio: 4/3,
+          url: url,
+          loaded: false
+        });
+      });
+      
+      renderPhotoWall();
+    }
+    
+    function loadImages() {
+      const loadPromises = imageUrls.map((url, index) => {
+        return new Promise((resolve, reject) => {
+          const img = new Image();
+          img.onload = () => {
+            if (images[index]) {
+              images[index].width = img.naturalWidth;
+              images[index].height = img.naturalHeight;
+              images[index].aspectRatio = img.naturalWidth / img.naturalHeight;
+              images[index].loaded = true;
+            }
+            resolve();
+          };
+          img.onerror = () => {
+            if (images[index]) {
+              images[index].loaded = true;
+            }
+            resolve();
+          };
+          img.src = url;
+        });
+      });
+      
+      Promise.all(loadPromises)
+        .then(() => {
+          const wall = _$(wallId);
+          if (wall) {
+            wall.style.opacity = '1';
+            wall.style.pointerEvents = 'auto';
+            wall.style.transition = 'opacity 0.3s ease';
+          }
+          renderPhotoWall();
+        })
+        .catch((error) => console.error("图片加载失败:", error));
+    }
+    
+    function renderPhotoWall() {
+      const wall = _$(wallId);
+      
+      if (!images.length || !wall) return;
+      
+      const screenWidth = wall.offsetWidth || window.innerWidth - 40;
+      lastWidth = screenWidth;
+      
+      wall.innerHTML = "";
+      const rowHeight = 200;
+      const gap = 10;
+      const maxPerRow = 4;
+      
+      let row = [];
+      let rowWidth = 0;
+      const rows = [];
+      
+      images.forEach((img) => {
+        const scaledWidth = rowHeight * img.aspectRatio;
+        
+        if (rowWidth + scaledWidth <= screenWidth && row.length < maxPerRow) {
+          row.push(img);
+          rowWidth += scaledWidth + gap;
+        } else {
+          if (row.length) rows.push(row);
+          row = [img];
+          rowWidth = scaledWidth + gap;
+        }
+      });
+      
+      if (row.length) rows.push(row);
+      
+      rows.forEach((row) => {
+        const rowDiv = document.createElement("div");
+        rowDiv.style.cssText = `display: flex; gap: ${gap}px; width: 100%`;
+        
+        row.forEach((img) => {
+          const item = document.createElement("div");
+          item.className = "photo-item";
+          const flex = row.length === 1 ? '1' : img.aspectRatio;
+          item.style.cssText = `flex: ${flex}; height: ${rowHeight}px`;
+          
+          const imgEl = document.createElement("img");
+          imgEl.alt = "Gallery Image";
+          imgEl.style.cssText = "width: 100%; height: 100%; object-fit: cover";
+          imgEl.className = "lazyload";
+          imgEl.dataset.src = img.url;
+          imgEl.dataset.sizes = "auto";
+
+          const link = document.createElement("a");
+          link.href = img.url;
+          link.dataset.pswpWidth = img.width;
+          link.dataset.pswpHeight = img.height;
+          link.target = "_blank";
+          link.className = "article-gallery-item";
+          link.style.cssText = "width: 100%; height: 100%";
+          link.appendChild(imgEl);
+          
+          item.appendChild(link);
+          rowDiv.appendChild(item);
+        });
+        
+        wall.appendChild(rowDiv);
+      });
+    }
+    
+    function handleResize() {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(renderPhotoWall, 250);
+    }
+    
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  })();
+</script><link rel="preload" as="style" href="/broken-boat/css/gallery.min.94cd3998ffbf0abe50a0f8a9251c39f9df60899a02db59add20026d894f2d44f.css" onload="this.onload=null;this.rel='stylesheet'" /></p>
+        
+        <hr><p>本文2026-04-07首发于<a href='https://mikeliu30.github.io/broken-boat/'>破船之家</a>，最后修改于2026-04-07</p>]]></description><category>生活</category></item></channel></rss>
