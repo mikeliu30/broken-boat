@@ -37,7 +37,7 @@ defaultContentLanguageInSubdir = false
       subtitle = "코드와 생활, 함께"
 
 [params]
-  mainSections = ["posts"]
+  mainSections = ["post"]
   author = "mikeliu30"
   github = "https://github.com/mikeliu30"
   since = 2026
@@ -96,3 +96,5 @@ defaultContentLanguageInSubdir = false
   [markup.highlight]
     style = "monokai"
     lineNos = true
+  [markup.goldmark.renderer]
+    unsafe = true
