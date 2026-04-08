@@ -1,6 +1,8 @@
 ---
 title: "友情链接"
 date: 2026-03-27
+_build:
+  list: never
 ---
 
 ## 小伙伴们
