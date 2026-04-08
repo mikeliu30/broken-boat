@@ -1,6 +1,8 @@
 ---
 title: "你好，我是 Liu"
 date: 2026-04-07
+categories: ["生活"]
+tags: ["介绍"]
 description: "这里是我的个人博客，不只是记录写代码的日常，也记录我的日常生活以及一些技术和理解的分享。"
 ---
 
@@ -29,7 +31,7 @@ description: "这里是我的个人博客，不只是记录写代码的日常，
   <p style="float:right;width:220px;text-align:center;margin:0 0 16px
   24px;color:#aaa;font-size:13px;font-style:italic;">摸鱼 ing</p> 
 - 也和朋友一起做了设计，做了自己的硬件的玩具出来
-！[AI小智](D:\http web\static\images\tools.jpg)
+![AI小智](/broken-boat/images/tools.jpg)
 - 研究过 AI、自动化、系统搭建
 - 写过文章，记录过思考
 
