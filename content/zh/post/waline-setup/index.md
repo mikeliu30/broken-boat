@@ -3,7 +3,7 @@ title: "为 Hugo 博客添加 Waline 评论系统（完整教程）"
 date: 2026-04-09
 categories: ["技术"]
 tags: ["Hugo", "Waline", "评论系统", "Vercel"]
-draft: true
+draft: false
 description: "从零开始为 Hugo 静态博客配置 Waline 评论系统，支持 GitHub/Google 登录和 reaction 表情，包含 Vercel 部署、Neon 数据库、OAuth 配置的完整步骤。"
 ---
 
@@ -120,7 +120,7 @@ CREATE TABLE IF NOT EXISTS wl_comment (
   nick VARCHAR(100),
   pid INTEGER,
   rid INTEGER,
-  sticky BOOLEAN,
+  sticky INTEGER,
   status VARCHAR(50),
   "like" INTEGER,
   url VARCHAR(200),
@@ -130,7 +130,8 @@ CREATE TABLE IF NOT EXISTS wl_comment (
   level INTEGER,
   avatar VARCHAR(200),
   orig TEXT,
-  addr VARCHAR(200)
+  addr VARCHAR(200),
+  ua VARCHAR(500)
 );
 
 CREATE TABLE IF NOT EXISTS wl_counter (
@@ -324,7 +325,8 @@ git push origin main
 | GitHub 登录失败 | 回调 URL 填错 | 确认为 `https://xxx.vercel.app/oauth/github` |
 | Google 登录失败 | 重定向 URI 填错 | 确认为 `https://xxx.vercel.app/oauth/google` |
 | reaction 不显示 | 模板覆盖未生效 | 确认 `layouts/partials/post/comment.html` 存在且含 `reaction: true` |
-| 评论提交后刷新消失 | 默认开启审核模式 | 在 Vercel 添加 `REVIEW=false` 后 Redeploy |
+| 评论提交后刷新消失 | 默认开启审核模式或缺少 `ua` 列 | 在 Vercel 添加 `REVIEW=false` 后 Redeploy；同时在 Neon 执行：`ALTER TABLE wl_comment ADD COLUMN IF NOT EXISTS ua VARCHAR(500);` |
+| 置顶按钮点击无反应 | `sticky` 列类型为 BOOLEAN，需为 INTEGER | 在 Neon 执行：`ALTER TABLE wl_comment ALTER COLUMN sticky TYPE INTEGER USING (sticky::int);` |
 
 ---
 
