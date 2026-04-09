@@ -118,10 +118,29 @@
         const walineEl = document.querySelector('.waline-comment');
         if (walineEl) {
           const refreshBtn = document.createElement('button');
-          refreshBtn.textContent = '🔄 刷新评论';
+          refreshBtn.textContent = '刷新';
           refreshBtn.style.cssText = 'display:block;margin:12px auto 0;padding:5px 16px;cursor:pointer;border:1px solid #ccc;border-radius:4px;background:transparent;font-size:13px;';
           refreshBtn.addEventListener('click', () => {
-            if (window.walineInstance) window.walineInstance.update();
+            if (window.walineInstance) {
+              window.walineInstance.destroy();
+            }
+            window.walineInstance = walineInit({
+              el: '.waline-comment',
+              serverURL: '{{ $params.waline.serverURL }}',
+              lang: document.documentElement.lang || 'en',
+              locale: JSON.parse({{ $params.waline.locale | jsonify }}),
+              emoji: JSON.parse({{ $params.waline.emoji | jsonify}}),
+              meta: JSON.parse({{ $params.waline.meta | jsonify }}),
+              requiredMeta: JSON.parse({{ $params.waline.requiredMeta | jsonify }}),
+              wordLimit: {{ $params.waline.wordLimit }},
+              comment: true,
+              pageSize: {{ $params.waline.pageSize }},
+              dark: 'html[data-theme="dark"]',
+              pageview: {{ $params.waline.pageview }},
+              reaction: true,
+              login: 'force',
+            });
+            walineEl.appendChild(refreshBtn);
           });
           walineEl.appendChild(refreshBtn);
         }
