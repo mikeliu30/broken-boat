@@ -3,7 +3,7 @@ title: "为 Hugo 博客添加 Waline 评论系统（完整教程）"
 date: 2026-04-09
 categories: ["技术"]
 tags: ["Hugo", "Waline", "评论系统", "Vercel"]
-draft: false
+draft: true
 description: "从零开始为 Hugo 静态博客配置 Waline 评论系统，支持 GitHub/Google 登录和 reaction 表情，包含 Vercel 部署、Neon 数据库、OAuth 配置的完整步骤。"
 ---
 

@@ -62,7 +62,7 @@ defaultContentLanguageInSubdir = false
     url = "zh/links"
 
   [params.waline]
-    enable = true
+    enable = false
     serverURL = "https://waline-server-six-sooty.vercel.app"
     pageview = true
     emoji = ["https://unpkg.com/@waline/emojis@1.1.0/weibo"]
