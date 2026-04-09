@@ -5,6 +5,7 @@ categories: ["生活"]
 tags: ["介绍"]
 cover: /broken-boat/zh/post/hello/head.jpg
 description: "这里是我的个人博客，不只是记录写代码的日常，也记录我的日常生活以及一些技术和理解的分享。"
+weight: 1
 ---
 
 ## 关于我
