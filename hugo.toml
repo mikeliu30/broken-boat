@@ -61,6 +61,16 @@ defaultContentLanguageInSubdir = false
     name = "friend"
     url = "zh/links"
 
+  [params.waline]
+    enable = true
+    serverURL = "https://waline-server-six-sooty.vercel.app"
+    pageview = true
+    emoji = ["https://unpkg.com/@waline/emojis@1.1.0/weibo"]
+    meta = ["nick", "mail", "link"]
+    requiredMeta = ["nick"]
+    wordLimit = 0
+    pageSize = 10
+
   [params.injector]
     head_begin = '''
 <script>
