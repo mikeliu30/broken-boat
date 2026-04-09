@@ -113,6 +113,18 @@
           reaction: true,
           login: 'force',
         });
+
+        // 在评论区底部添加刷新按钮
+        const walineEl = document.querySelector('.waline-comment');
+        if (walineEl) {
+          const refreshBtn = document.createElement('button');
+          refreshBtn.textContent = '🔄 刷新评论';
+          refreshBtn.style.cssText = 'display:block;margin:12px auto 0;padding:5px 16px;cursor:pointer;border:1px solid #ccc;border-radius:4px;background:transparent;font-size:13px;';
+          refreshBtn.addEventListener('click', () => {
+            if (window.walineInstance) window.walineInstance.update();
+          });
+          walineEl.appendChild(refreshBtn);
+        }
       }
     },
     {{- end -}}
