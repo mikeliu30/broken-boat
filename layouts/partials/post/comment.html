@@ -113,6 +113,20 @@
           reaction: true,
           login: 'force',
         });
+
+        // 添加刷新按钮
+        const walineRefreshBtn = document.createElement('button');
+        walineRefreshBtn.textContent = '🔄 刷新评论';
+        walineRefreshBtn.style.cssText = 'margin:8px 0;padding:4px 12px;cursor:pointer;border:1px solid #ccc;border-radius:4px;background:transparent;font-size:13px;';
+        walineRefreshBtn.addEventListener('click', () => {
+          if (window.walineInstance) {
+            window.walineInstance.update();
+          }
+        });
+        const walineContainer = document.querySelector('.waline-comment');
+        if (walineContainer) {
+          walineContainer.insertBefore(walineRefreshBtn, walineContainer.firstChild);
+        }
       }
     },
     {{- end -}}
