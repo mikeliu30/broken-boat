@@ -164,7 +164,19 @@ https://你的项目名.vercel.app/ui/register
 
 填写用户名、邮箱、个人网站（可选）、密码，点击**用户注册**。
 
-### 1.5 配置 CORS 白名单
+### 1.5 关闭评论审核（推荐）
+
+默认情况下新评论需要管理员审核才会显示，刷新页面后评论会消失。个人博客建议关闭审核。
+
+在 Vercel → **Settings** → **Environment Variables** 添加：
+
+| Key | Value |
+|---|---|
+| `REVIEW` | `false` |
+
+添加后 **Redeploy** 一次，之后评论提交即时显示。
+
+### 1.6 配置 CORS 白名单
 
 在 Vercel 项目 → **Settings** → **Environment Variables** 中添加：
 
@@ -312,7 +324,7 @@ git push origin main
 | GitHub 登录失败 | 回调 URL 填错 | 确认为 `https://xxx.vercel.app/oauth/github` |
 | Google 登录失败 | 重定向 URI 填错 | 确认为 `https://xxx.vercel.app/oauth/google` |
 | reaction 不显示 | 模板覆盖未生效 | 确认 `layouts/partials/post/comment.html` 存在且含 `reaction: true` |
-| 评论区不出现 | Waline 未启用 | 检查 `hugo.toml` 的 `enable = true` 和 `serverURL` |
+| 评论提交后刷新消失 | 默认开启审核模式 | 在 Vercel 添加 `REVIEW=false` 后 Redeploy |
 
 ---
 
