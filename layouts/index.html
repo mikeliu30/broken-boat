@@ -1,146 +1,122 @@
 {{- define "main" -}}
 
-<!-- Hero 全屏区域 -->
+<!-- Hero 全屏遮罩 -->
 <div id="hero-section">
   <div id="hero-content">
     <h1 id="hero-title">破船之家</h1>
     <p id="hero-subtitle"><span id="typewriter"></span><span class="cursor">|</span></p>
-    <div id="hero-arrow" onclick="document.getElementById('post-list').scrollIntoView({behavior:'smooth'})">
-      <span>&#8964;</span>
-    </div>
+    <div id="hero-arrow">&#8964;</div>
   </div>
 </div>
 
-<!-- 文章列表 -->
-<div id="post-list">
-  {{- $ctx := . -}}
-  {{- $pageSize := 0 -}}
-  {{- with $.Site.Params.paginate.post -}}
-    {{- $pageSize = . -}}
-  {{- end -}}
-  {{- $paginator := "" -}}
-  {{- if gt $pageSize 0 -}}
-    {{- $paginator = .Paginate (where .Site.RegularPages "Section" "in" .Site.Params.mainSections) $pageSize -}}
-  {{- else -}}
-    {{- $paginator = .Paginate (where .Site.RegularPages "Section" "in" .Site.Params.mainSections) -}}
-  {{- end -}}
-  {{- $sort_config := .Site.Params.sort_order.home -}}
-  {{- if and (eq 1 $paginator.PageNumber) ($ctx.Site.Params.home_categories.enable) -}}
-    <div class="post-categories-wrapper" data-aos="{{ $ctx.Site.Params.animation.options.home.post }}">
-      {{- range $k, $v := $ctx.Site.Params.home_categories.content -}}
-        {{- if $v.categories -}}
-          <div class="post-categories-wrap">
-            <a class="post-link" href="{{ (printf "%s%s" "categories/" (urlize $v.categories)) | relLangURL }}" aria-label="{{ $v.categories }}" title="{{ $v.categories }}"></a>
-            <div class="post-categories-cover">
-              {{- if $v.cover -}}
-                <img data-src="{{ $v.cover | relURL }}" data-sizes="auto" alt="{{ $v.categories }}" class="lazyload" />
+<!-- 原始文章列表，保持不变 -->
+{{- $ctx := . -}}
+{{- $pageSize := 0 -}}
+{{- with $.Site.Params.paginate.post -}}
+  {{- $pageSize = . -}}
+{{- end -}}
+{{- $paginator := "" -}}
+{{- if gt $pageSize 0 -}}
+  {{- $paginator = .Paginate (where .Site.RegularPages "Section" "in" .Site.Params.mainSections) $pageSize -}}
+{{- else -}}
+  {{- $paginator = .Paginate (where .Site.RegularPages "Section" "in" .Site.Params.mainSections) -}}
+{{- end -}}
+{{- $sort_config := .Site.Params.sort_order.home -}}
+{{- if and (eq 1 $paginator.PageNumber) ($ctx.Site.Params.home_categories.enable) -}}
+  <div class="post-categories-wrapper" data-aos="{{ $ctx.Site.Params.animation.options.home.post }}">
+    {{- range $k, $v := $ctx.Site.Params.home_categories.content -}}
+      {{- if $v.categories -}}
+        <div class="post-categories-wrap">
+          <a class="post-link" href="{{ (printf "%s%s" "categories/" (urlize $v.categories)) | relLangURL }}" aria-label="{{ $v.categories }}" title="{{ $v.categories }}"></a>
+          <div class="post-categories-cover">
+            {{- if $v.cover -}}
+              <img data-src="{{ $v.cover | relURL }}" data-sizes="auto" alt="{{ $v.categories }}" class="lazyload" />
+            {{- else -}}
+              {{- $cover := partial "helpers/randomCover.html" $ctx -}}
+              {{- if $cover -}}
+                <img data-src="{{ $cover | relURL }}" data-sizes="auto" alt="{{ $v.categories }}" class="lazyload" />
               {{- else -}}
-                {{- $cover := partial "helpers/randomCover.html" $ctx -}}
-                {{- if $cover -}}
-                  <img data-src="{{ $cover | relURL }}" data-sizes="auto" alt="{{ $v.categories }}" class="lazyload" />
-                {{- else -}}
-                  <img data-src="{{ $ctx.Site.Params.banner | relURL }}" data-sizes="auto" alt="{{ $v.categories }}" class="lazyload" />
-                {{- end -}}
+                <img data-src="{{ $ctx.Site.Params.banner | relURL }}" data-sizes="auto" alt="{{ $v.categories }}" class="lazyload" />
               {{- end -}}
-              <h2>{{ $v.categories }}</h2>
-              <h3>{{ i18n "home_categories.count" (len (index $ctx.Site.Taxonomies.categories (lower $v.categories))) }}</h3>
-            </div>
+            {{- end -}}
+            <h2>{{ $v.categories }}</h2>
+            <h3>{{ i18n "home_categories.count" (len (index $ctx.Site.Taxonomies.categories (lower $v.categories))) }}</h3>
           </div>
-        {{- end -}}
+        </div>
       {{- end -}}
-    </div>
+    {{- end -}}
+  </div>
+{{- end -}}
+{{- if eq $sort_config "weight" -}}
+  {{- range $k, $v := $paginator.Pages.ByWeight -}}
+    {{- partial "post.html" (dict "index" $k "ctx" . "page" $v) -}}
   {{- end -}}
-  {{- if eq $sort_config "weight" -}}
-    {{- range $k, $v := $paginator.Pages.ByWeight -}}
-      {{- partial "post.html" (dict "index" $k "ctx" . "page" $v) -}}
-    {{- end -}}
-  {{- else if eq $sort_config "weight-reverse" -}}
-    {{- range $k, $v := $paginator.Pages.ByWeight.Reverse -}}
-      {{- partial "post.html" (dict "index" $k "ctx" . "page" $v) -}}
-    {{- end -}}
-  {{- else if eq $sort_config "date" -}}
-    {{- range $k, $v := $paginator.Pages.ByDate -}}
-      {{- partial "post.html" (dict "index" $k "ctx" . "page" $v) -}}
-    {{- end -}}
-  {{- else if eq $sort_config "date-reverse" -}}
-    {{- range $k, $v := $paginator.Pages.ByDate.Reverse -}}
-      {{- partial "post.html" (dict "index" $k "ctx" . "page" $v) -}}
-    {{- end -}}
-  {{- else -}}
-    {{- range $k, $v := $paginator.Pages -}}
-      {{- partial "post.html" (dict "index" $k "ctx" . "page" $v) -}}
-    {{- end -}}
+{{- else if eq $sort_config "weight-reverse" -}}
+  {{- range $k, $v := $paginator.Pages.ByWeight.Reverse -}}
+    {{- partial "post.html" (dict "index" $k "ctx" . "page" $v) -}}
   {{- end -}}
-  {{- partial "pagination.html" . -}}
-</div>
+{{- else if eq $sort_config "date" -}}
+  {{- range $k, $v := $paginator.Pages.ByDate -}}
+    {{- partial "post.html" (dict "index" $k "ctx" . "page" $v) -}}
+  {{- end -}}
+{{- else if eq $sort_config "date-reverse" -}}
+  {{- range $k, $v := $paginator.Pages.ByDate.Reverse -}}
+    {{- partial "post.html" (dict "index" $k "ctx" . "page" $v) -}}
+  {{- end -}}
+{{- else -}}
+  {{- range $k, $v := $paginator.Pages -}}
+    {{- partial "post.html" (dict "index" $k "ctx" . "page" $v) -}}
+  {{- end -}}
+{{- end -}}
+{{- partial "pagination.html" . -}}
 
 <style>
-/* Hero 遮住全屏，包括侧边栏 */
 #hero-section {
   position: fixed;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100vw;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 500;
+  z-index: 999;
   background: transparent;
-  transition: opacity 0.5s ease;
+  transition: opacity 0.6s ease;
 }
-
-#hero-section.hide {
+#hero-section.hero-hide {
   opacity: 0;
   pointer-events: none;
 }
-
-/* Hero 显示时，内容区域往下推出一屏 */
-body.hero-active #wrap {
-  margin-top: 100vh;
-}
-
-body.hero-active #content {
-  transition: margin-top 0.5s ease;
-}
-
 #hero-content {
   text-align: center;
-  z-index: 10;
   color: #fff;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+  text-shadow: 0 2px 10px rgba(0,0,0,0.7);
 }
-
 #hero-title {
   font-size: 3.5rem;
   font-weight: bold;
   margin-bottom: 16px;
   letter-spacing: 4px;
 }
-
 #hero-subtitle {
   font-size: 1.4rem;
   margin-bottom: 48px;
   opacity: 0.9;
 }
-
 .cursor {
   animation: blink 0.8s infinite;
 }
-
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
 }
-
 #hero-arrow {
-  font-size: 2.5rem;
+  font-size: 2.8rem;
   cursor: pointer;
   animation: bounce 1.5s infinite;
-  opacity: 0.8;
+  opacity: 0.85;
   user-select: none;
 }
-
 @keyframes bounce {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(10px); }
@@ -148,61 +124,45 @@ body.hero-active #content {
 </style>
 
 <script>
-(function() {
-  // 打字机效果
+(function () {
+  // 锁定滚动
+  document.body.style.overflow = 'hidden';
+
+  // 打字机
   var texts = ['专心经营好自己的生活', '欢迎来到破船之家'];
   var i = 0, j = 0, deleting = false;
   var el = document.getElementById('typewriter');
-
   function type() {
-    var current = texts[i];
+    var cur = texts[i];
     if (!deleting) {
-      el.textContent = current.substring(0, j + 1);
-      j++;
-      if (j === current.length) {
-        deleting = true;
-        setTimeout(type, 1800);
-        return;
-      }
+      el.textContent = cur.substring(0, ++j);
+      if (j === cur.length) { deleting = true; setTimeout(type, 1800); return; }
     } else {
-      el.textContent = current.substring(0, j - 1);
-      j--;
-      if (j === 0) {
-        deleting = false;
-        i = (i + 1) % texts.length;
-      }
+      el.textContent = cur.substring(0, --j);
+      if (j === 0) { deleting = false; i = (i + 1) % texts.length; }
     }
     setTimeout(type, deleting ? 60 : 100);
   }
+  type();
 
-  // Hero 遮层逻辑
-  document.body.classList.add('hero-active');
-
+  // 消除 Hero
   var hero = document.getElementById('hero-section');
-  var dismissed = false;
-
-  function dismissHero() {
-    if (dismissed) return;
-    dismissed = true;
-    hero.classList.add('hide');
-    document.body.classList.remove('hero-active');
-    // 移除顶部偏移后平滑回到顶部
-    document.getElementById('wrap').style.marginTop = '';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    setTimeout(function() { hero.style.display = 'none'; }, 500);
+  var done = false;
+  function dismiss() {
+    if (done) return;
+    done = true;
+    document.body.style.overflow = '';
+    hero.classList.add('hero-hide');
+    setTimeout(function () { hero.style.display = 'none'; }, 650);
   }
 
-  // 点箭头跳过 Hero
-  document.getElementById('hero-arrow').onclick = dismissHero;
-
-  // 滚动时跳过 Hero
-  window.addEventListener('scroll', function() {
-    if (window.scrollY > 50) dismissHero();
+  document.getElementById('hero-arrow').addEventListener('click', dismiss);
+  window.addEventListener('scroll', function () {
+    if (window.scrollY > 30) dismiss();
   }, { passive: true });
-
-  type();
+  // 键盘任意键也可跳过
+  window.addEventListener('keydown', dismiss, { once: true });
 })();
 </script>
-
 
 {{- end -}}
