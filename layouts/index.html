@@ -74,6 +74,11 @@
 
 <style>
 #hero-section {
+  /* 突破 #main 的宽度限制，占满全屏 */
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  transform: translateX(-50%);
   height: 80vh;
   display: flex;
   align-items: center;
@@ -133,6 +138,31 @@
     setTimeout(type, deleting ? 60 : 100);
   }
   type();
+
+  // 侧边栏跟随 Hero 显隐
+  var sidebar = document.getElementById('sidebar');
+  var hero = document.getElementById('hero-section');
+
+  function updateSidebar() {
+    if (!sidebar || !hero) return;
+    var heroBottom = hero.getBoundingClientRect().bottom;
+    if (heroBottom <= 0) {
+      sidebar.style.opacity = '1';
+      sidebar.style.visibility = 'visible';
+      sidebar.style.transition = 'opacity 0.4s';
+    } else {
+      sidebar.style.opacity = '0';
+      sidebar.style.visibility = 'hidden';
+    }
+  }
+
+  // 初始隐藏侧边栏
+  if (sidebar) {
+    sidebar.style.opacity = '0';
+    sidebar.style.visibility = 'hidden';
+  }
+
+  window.addEventListener('scroll', updateSidebar, { passive: true });
 })();
 </script>
 
