@@ -1,0 +1,166 @@
+{{- define "main" -}}
+
+<!-- Hero 全屏区域 -->
+<div id="hero-section">
+  <div id="hero-content">
+    <h1 id="hero-title">破船之家</h1>
+    <p id="hero-subtitle"><span id="typewriter"></span><span class="cursor">|</span></p>
+    <div id="hero-arrow" onclick="document.getElementById('post-list').scrollIntoView({behavior:'smooth'})">
+      <span>&#8964;</span>
+    </div>
+  </div>
+</div>
+
+<!-- 文章列表 -->
+<div id="post-list">
+  {{- $ctx := . -}}
+  {{- $pageSize := 0 -}}
+  {{- with $.Site.Params.paginate.post -}}
+    {{- $pageSize = . -}}
+  {{- end -}}
+  {{- $paginator := "" -}}
+  {{- if gt $pageSize 0 -}}
+    {{- $paginator = .Paginate (where .Site.RegularPages "Section" "in" .Site.Params.mainSections) $pageSize -}}
+  {{- else -}}
+    {{- $paginator = .Paginate (where .Site.RegularPages "Section" "in" .Site.Params.mainSections) -}}
+  {{- end -}}
+  {{- $sort_config := .Site.Params.sort_order.home -}}
+  {{- if and (eq 1 $paginator.PageNumber) ($ctx.Site.Params.home_categories.enable) -}}
+    <div class="post-categories-wrapper" data-aos="{{ $ctx.Site.Params.animation.options.home.post }}">
+      {{- range $k, $v := $ctx.Site.Params.home_categories.content -}}
+        {{- if $v.categories -}}
+          <div class="post-categories-wrap">
+            <a class="post-link" href="{{ (printf "%s%s" "categories/" (urlize $v.categories)) | relLangURL }}" aria-label="{{ $v.categories }}" title="{{ $v.categories }}"></a>
+            <div class="post-categories-cover">
+              {{- if $v.cover -}}
+                <img data-src="{{ $v.cover | relURL }}" data-sizes="auto" alt="{{ $v.categories }}" class="lazyload" />
+              {{- else -}}
+                {{- $cover := partial "helpers/randomCover.html" $ctx -}}
+                {{- if $cover -}}
+                  <img data-src="{{ $cover | relURL }}" data-sizes="auto" alt="{{ $v.categories }}" class="lazyload" />
+                {{- else -}}
+                  <img data-src="{{ $ctx.Site.Params.banner | relURL }}" data-sizes="auto" alt="{{ $v.categories }}" class="lazyload" />
+                {{- end -}}
+              {{- end -}}
+              <h2>{{ $v.categories }}</h2>
+              <h3>{{ i18n "home_categories.count" (len (index $ctx.Site.Taxonomies.categories (lower $v.categories))) }}</h3>
+            </div>
+          </div>
+        {{- end -}}
+      {{- end -}}
+    </div>
+  {{- end -}}
+  {{- if eq $sort_config "weight" -}}
+    {{- range $k, $v := $paginator.Pages.ByWeight -}}
+      {{- partial "post.html" (dict "index" $k "ctx" . "page" $v) -}}
+    {{- end -}}
+  {{- else if eq $sort_config "weight-reverse" -}}
+    {{- range $k, $v := $paginator.Pages.ByWeight.Reverse -}}
+      {{- partial "post.html" (dict "index" $k "ctx" . "page" $v) -}}
+    {{- end -}}
+  {{- else if eq $sort_config "date" -}}
+    {{- range $k, $v := $paginator.Pages.ByDate -}}
+      {{- partial "post.html" (dict "index" $k "ctx" . "page" $v) -}}
+    {{- end -}}
+  {{- else if eq $sort_config "date-reverse" -}}
+    {{- range $k, $v := $paginator.Pages.ByDate.Reverse -}}
+      {{- partial "post.html" (dict "index" $k "ctx" . "page" $v) -}}
+    {{- end -}}
+  {{- else -}}
+    {{- range $k, $v := $paginator.Pages -}}
+      {{- partial "post.html" (dict "index" $k "ctx" . "page" $v) -}}
+    {{- end -}}
+  {{- end -}}
+  {{- partial "pagination.html" . -}}
+</div>
+
+<style>
+#hero-section {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-bottom: 40px;
+  background: transparent;
+}
+
+#hero-content {
+  text-align: center;
+  z-index: 10;
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+}
+
+#hero-title {
+  font-size: 3.5rem;
+  font-weight: bold;
+  margin-bottom: 16px;
+  letter-spacing: 4px;
+}
+
+#hero-subtitle {
+  font-size: 1.4rem;
+  margin-bottom: 48px;
+  opacity: 0.9;
+}
+
+.cursor {
+  animation: blink 0.8s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+#hero-arrow {
+  font-size: 2.5rem;
+  cursor: pointer;
+  animation: bounce 1.5s infinite;
+  opacity: 0.8;
+  user-select: none;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+}
+</style>
+
+<script>
+(function() {
+  var texts = ['专心经营好自己的生活', '欢迎来到破船之家'];
+  var i = 0, j = 0, deleting = false;
+  var el = document.getElementById('typewriter');
+
+  function type() {
+    var current = texts[i];
+    if (!deleting) {
+      el.textContent = current.substring(0, j + 1);
+      j++;
+      if (j === current.length) {
+        deleting = true;
+        setTimeout(type, 1800);
+        return;
+      }
+    } else {
+      el.textContent = current.substring(0, j - 1);
+      j--;
+      if (j === 0) {
+        deleting = false;
+        i = (i + 1) % texts.length;
+      }
+    }
+    setTimeout(type, deleting ? 60 : 100);
+  }
+
+  type();
+})();
+</script>
+
+{{- end -}}
