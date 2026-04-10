@@ -16,23 +16,32 @@
   padding: 0;
   margin: 0;
 }
-#recent-comments-list li {
+.rc-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
   padding: 8px 0;
   border-bottom: 1px solid rgba(128,128,128,0.15);
-  font-size: 13px;
-  line-height: 1.5;
 }
-#recent-comments-list li:last-child {
+#recent-comments-list li:last-child .rc-item {
   border-bottom: none;
 }
-#recent-comments-list a {
-  display: block;
-  text-decoration: none;
+.rc-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.rc-body {
+  flex: 1;
+  overflow: hidden;
 }
 .rc-nick {
   font-weight: bold;
   color: var(--color-link, #e74c3c);
   margin-right: 4px;
+  font-size: 13px;
 }
 .rc-text {
   color: var(--color-text, #ccc);
@@ -41,6 +50,7 @@
   white-space: nowrap;
   display: block;
   max-width: 100%;
+  font-size: 12px;
 }
 </style>
 
@@ -61,9 +71,15 @@
         var nick = c.nick || '匿名';
         var text = (c.comment || '').replace(/<[^>]+>/g, '').slice(0, 30);
         var url = c.url + '#waline';
-        return '<li><a href="' + url + '" title="' + nick + ': ' + text + '">'
-          + '<span class="rc-nick">' + nick + ':</span>'
+        var avatar = c.avatar || ('https://gravatar.loli.net/avatar/?d=mp&s=32');
+        return '<li><a href="' + url + '" title="' + nick + ': ' + text + '" style="text-decoration:none;">'
+          + '<div class="rc-item">'
+          + '<img class="rc-avatar" src="' + avatar + '" alt="' + nick + '" onerror="this.src=\'https://gravatar.loli.net/avatar/?d=mp&s=32\'">'
+          + '<div class="rc-body">'
+          + '<span class="rc-nick">' + nick + '</span>'
           + '<span class="rc-text">' + text + '</span>'
+          + '</div>'
+          + '</div>'
           + '</a></li>';
       }).join('');
     })
