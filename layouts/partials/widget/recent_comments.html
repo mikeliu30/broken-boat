@@ -51,7 +51,8 @@
 
   fetch(serverURL + '/api/comment?type=recent&count=5')
     .then(function (r) { return r.json(); })
-    .then(function (data) {
+    .then(function (res) {
+      var data = res.data || res;
       if (!data || !data.length) {
         listEl.innerHTML = '<li style="color:#999;font-size:13px;">暂无评论</li>';
         return;
