@@ -1,15 +1,16 @@
 {{- define "main" -}}
 
-<!-- Hero 全屏遮罩 -->
+<!-- Hero 区域，作为首页内容的一部分 -->
 <div id="hero-section">
   <div id="hero-content">
     <h1 id="hero-title">破船之家</h1>
     <p id="hero-subtitle"><span id="typewriter"></span><span class="cursor">|</span></p>
-    <div id="hero-arrow">&#8964;</div>
+    <div id="hero-arrow" onclick="document.getElementById('post-list').scrollIntoView({behavior:'smooth'})">&#8964;</div>
   </div>
 </div>
 
-<!-- 原始文章列表，保持不变 -->
+<!-- 文章列表 -->
+<div id="post-list">
 {{- $ctx := . -}}
 {{- $pageSize := 0 -}}
 {{- with $.Site.Params.paginate.post -}}
@@ -69,26 +70,15 @@
   {{- end -}}
 {{- end -}}
 {{- partial "pagination.html" . -}}
+</div>
 
 <style>
 #hero-section {
-  position: fixed;
-  inset: 0;
-  width: 100vw;
-  height: 100vh;
+  height: 80vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 999;
-  background-color: #111;
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  transition: opacity 0.6s ease;
-}
-#hero-section.hero-hide {
-  opacity: 0;
-  pointer-events: none;
+  margin-bottom: 32px;
 }
 #hero-content {
   text-align: center;
@@ -96,14 +86,14 @@
   text-shadow: 0 2px 10px rgba(0,0,0,0.7);
 }
 #hero-title {
-  font-size: 3.5rem;
+  font-size: 3rem;
   font-weight: bold;
   margin-bottom: 16px;
   letter-spacing: 4px;
 }
 #hero-subtitle {
-  font-size: 1.4rem;
-  margin-bottom: 48px;
+  font-size: 1.3rem;
+  margin-bottom: 40px;
   opacity: 0.9;
 }
 .cursor {
@@ -114,10 +104,10 @@
   50% { opacity: 0; }
 }
 #hero-arrow {
-  font-size: 2.8rem;
+  font-size: 2.5rem;
   cursor: pointer;
   animation: bounce 1.5s infinite;
-  opacity: 0.85;
+  opacity: 0.8;
   user-select: none;
 }
 @keyframes bounce {
@@ -128,16 +118,6 @@
 
 <script>
 (function () {
-  // 锁定滚动
-  document.body.style.overflow = 'hidden';
-
-  // 从 html 元素复制背景图到 Hero
-  var htmlBg = document.documentElement.style.backgroundImage;
-  if (htmlBg) {
-    document.getElementById('hero-section').style.backgroundImage = htmlBg;
-  }
-
-  // 打字机
   var texts = ['专心经营好自己的生活', '欢迎来到破船之家'];
   var i = 0, j = 0, deleting = false;
   var el = document.getElementById('typewriter');
@@ -153,24 +133,6 @@
     setTimeout(type, deleting ? 60 : 100);
   }
   type();
-
-  // 消除 Hero
-  var hero = document.getElementById('hero-section');
-  var done = false;
-  function dismiss() {
-    if (done) return;
-    done = true;
-    document.body.style.overflow = '';
-    hero.classList.add('hero-hide');
-    setTimeout(function () { hero.style.display = 'none'; }, 650);
-  }
-
-  document.getElementById('hero-arrow').addEventListener('click', dismiss);
-  window.addEventListener('scroll', function () {
-    if (window.scrollY > 30) dismiss();
-  }, { passive: true });
-  // 键盘任意键也可跳过
-  window.addEventListener('keydown', dismiss, { once: true });
 })();
 </script>
 
