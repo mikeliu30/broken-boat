@@ -1,0 +1,74 @@
+{{- if .Site.Params.waline.enable -}}
+<div class="widget-wrapper">
+  <div class="widget-wrap" data-aos="{{ .Site.Params.animation.options.home.widget }}">
+    <h3 class="widget-title">最新评论</h3>
+    <div class="widget">
+      <ul id="recent-comments-list">
+        <li style="color:#999;font-size:13px;">加载中...</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<style>
+#recent-comments-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+#recent-comments-list li {
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(128,128,128,0.15);
+  font-size: 13px;
+  line-height: 1.5;
+}
+#recent-comments-list li:last-child {
+  border-bottom: none;
+}
+#recent-comments-list a {
+  display: block;
+  text-decoration: none;
+}
+.rc-nick {
+  font-weight: bold;
+  color: var(--color-link, #e74c3c);
+  margin-right: 4px;
+}
+.rc-text {
+  color: var(--color-text, #ccc);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+  max-width: 100%;
+}
+</style>
+
+<script>
+(function () {
+  var serverURL = '{{ .Site.Params.waline.serverURL }}';
+  var listEl = document.getElementById('recent-comments-list');
+
+  fetch(serverURL + '/api/comment?type=recent&count=5')
+    .then(function (r) { return r.json(); })
+    .then(function (data) {
+      if (!data || !data.length) {
+        listEl.innerHTML = '<li style="color:#999;font-size:13px;">暂无评论</li>';
+        return;
+      }
+      listEl.innerHTML = data.map(function (c) {
+        var nick = c.nick || '匿名';
+        var text = (c.comment || '').replace(/<[^>]+>/g, '').slice(0, 30);
+        var url = c.url + '#waline';
+        return '<li><a href="' + url + '" title="' + nick + ': ' + text + '">'
+          + '<span class="rc-nick">' + nick + ':</span>'
+          + '<span class="rc-text">' + text + '</span>'
+          + '</a></li>';
+      }).join('');
+    })
+    .catch(function () {
+      listEl.innerHTML = '<li style="color:#999;font-size:13px;">加载失败</li>';
+    });
+})();
+</script>
+{{- end -}}

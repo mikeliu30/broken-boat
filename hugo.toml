@@ -43,7 +43,7 @@ defaultContentLanguageInSubdir = false
   since = 2026
   avatar = "avatar.jpg"
   description = "努力搬砖学技术中..."
-  widgets = ["category", "tag", "recent_posts"]
+  widgets = ["category", "tag", "recent_posts", "recent_comments"]
 
   [params.sidebar]
     position = "left"
