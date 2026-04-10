@@ -75,18 +75,33 @@
 </div>
 
 <style>
+/* Hero 遮住全屏，包括侧边栏 */
 #hero-section {
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100vw;
   height: 100vh;
-  left: 50%;
-  transform: translateX(-50%);
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
-  margin-bottom: 40px;
+  z-index: 500;
   background: transparent;
+  transition: opacity 0.5s ease;
+}
+
+#hero-section.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Hero 显示时，内容区域往下推出一屏 */
+body.hero-active #wrap {
+  margin-top: 100vh;
+}
+
+body.hero-active #content {
+  transition: margin-top 0.5s ease;
 }
 
 #hero-content {
@@ -134,6 +149,7 @@
 
 <script>
 (function() {
+  // 打字机效果
   var texts = ['专心经营好自己的生活', '欢迎来到破船之家'];
   var i = 0, j = 0, deleting = false;
   var el = document.getElementById('typewriter');
@@ -159,8 +175,34 @@
     setTimeout(type, deleting ? 60 : 100);
   }
 
+  // Hero 遮层逻辑
+  document.body.classList.add('hero-active');
+
+  var hero = document.getElementById('hero-section');
+  var dismissed = false;
+
+  function dismissHero() {
+    if (dismissed) return;
+    dismissed = true;
+    hero.classList.add('hide');
+    document.body.classList.remove('hero-active');
+    // 移除顶部偏移后平滑回到顶部
+    document.getElementById('wrap').style.marginTop = '';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setTimeout(function() { hero.style.display = 'none'; }, 500);
+  }
+
+  // 点箭头跳过 Hero
+  document.getElementById('hero-arrow').onclick = dismissHero;
+
+  // 滚动时跳过 Hero
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 50) dismissHero();
+  }, { passive: true });
+
   type();
 })();
 </script>
+
 
 {{- end -}}
