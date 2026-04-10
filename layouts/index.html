@@ -80,7 +80,10 @@
   align-items: center;
   justify-content: center;
   z-index: 999;
-  background: transparent;
+  background-color: #111;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   transition: opacity 0.6s ease;
 }
 #hero-section.hero-hide {
@@ -127,6 +130,12 @@
 (function () {
   // 锁定滚动
   document.body.style.overflow = 'hidden';
+
+  // 从 html 元素复制背景图到 Hero
+  var htmlBg = document.documentElement.style.backgroundImage;
+  if (htmlBg) {
+    document.getElementById('hero-section').style.backgroundImage = htmlBg;
+  }
 
   // 打字机
   var texts = ['专心经营好自己的生活', '欢迎来到破船之家'];
