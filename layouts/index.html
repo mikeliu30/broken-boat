@@ -1,16 +1,78 @@
-{{- define "main" -}}
-
-<!-- Hero 区域，作为首页内容的一部分 -->
+{{- define "hero" -}}
 <div id="hero-section">
   <div id="hero-content">
     <h1 id="hero-title">破船之家</h1>
     <p id="hero-subtitle"><span id="typewriter"></span><span class="cursor">|</span></p>
-    <div id="hero-arrow" onclick="document.getElementById('post-list').scrollIntoView({behavior:'smooth'})">&#8964;</div>
+    <div id="hero-arrow" onclick="document.getElementById('content').scrollIntoView({behavior:'smooth'})">&#8964;</div>
   </div>
 </div>
 
-<!-- 文章列表 -->
-<div id="post-list">
+<style>
+#hero-section {
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#hero-content {
+  text-align: center;
+  color: #fff;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.7);
+}
+#hero-title {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 16px;
+  letter-spacing: 4px;
+}
+#hero-subtitle {
+  font-size: 1.3rem;
+  margin-bottom: 40px;
+  opacity: 0.9;
+}
+.cursor {
+  animation: blink 0.8s infinite;
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+#hero-arrow {
+  font-size: 2.5rem;
+  cursor: pointer;
+  animation: bounce 1.5s infinite;
+  opacity: 0.8;
+  user-select: none;
+}
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+}
+</style>
+
+<script>
+(function () {
+  var texts = ['专心经营好自己的生活', '欢迎来到破船之家'];
+  var i = 0, j = 0, deleting = false;
+  var el = document.getElementById('typewriter');
+  function type() {
+    var cur = texts[i];
+    if (!deleting) {
+      el.textContent = cur.substring(0, ++j);
+      if (j === cur.length) { deleting = true; setTimeout(type, 1800); return; }
+    } else {
+      el.textContent = cur.substring(0, --j);
+      if (j === 0) { deleting = false; i = (i + 1) % texts.length; }
+    }
+    setTimeout(type, deleting ? 60 : 100);
+  }
+  type();
+})();
+</script>
+{{- end -}}
+
+{{- define "main" -}}
 {{- $ctx := . -}}
 {{- $pageSize := 0 -}}
 {{- with $.Site.Params.paginate.post -}}
@@ -70,75 +132,4 @@
   {{- end -}}
 {{- end -}}
 {{- partial "pagination.html" . -}}
-</div>
-
-<style>
-#hero-section {
-  /* 突破 #main 的宽度限制，占满全屏 */
-  position: relative;
-  width: 100vw;
-  left: 50%;
-  transform: translateX(-50%);
-  height: 80vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 32px;
-}
-#hero-content {
-  text-align: center;
-  color: #fff;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.7);
-}
-#hero-title {
-  font-size: 3rem;
-  font-weight: bold;
-  margin-bottom: 16px;
-  letter-spacing: 4px;
-}
-#hero-subtitle {
-  font-size: 1.3rem;
-  margin-bottom: 40px;
-  opacity: 0.9;
-}
-.cursor {
-  animation: blink 0.8s infinite;
-}
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-#hero-arrow {
-  font-size: 2.5rem;
-  cursor: pointer;
-  animation: bounce 1.5s infinite;
-  opacity: 0.8;
-  user-select: none;
-}
-@keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(10px); }
-}
-</style>
-
-<script>
-(function () {
-  var texts = ['专心经营好自己的生活', '欢迎来到破船之家'];
-  var i = 0, j = 0, deleting = false;
-  var el = document.getElementById('typewriter');
-  function type() {
-    var cur = texts[i];
-    if (!deleting) {
-      el.textContent = cur.substring(0, ++j);
-      if (j === cur.length) { deleting = true; setTimeout(type, 1800); return; }
-    } else {
-      el.textContent = cur.substring(0, --j);
-      if (j === 0) { deleting = false; i = (i + 1) % texts.length; }
-    }
-    setTimeout(type, deleting ? 60 : 100);
-  }
-  type();
-})();
-</script>
-
 {{- end -}}
