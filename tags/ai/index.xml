@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>AI on 破船之家</title><link>https://mikeliu30.github.io/broken-boat/tags/ai/</link><description>Recent content from 破船之家</description><generator>Hugo</generator><language>zh-CN</language><managingEditor>xxx@example.com (mikeliu30)</managingEditor><webMaster>xxx@example.com (mikeliu30)</webMaster><copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright><lastBuildDate>Tue, 14 Apr 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://mikeliu30.github.io/broken-boat/tags/ai/index.xml" rel="self" type="application/rss+xml"/><item><title>大模型的起源——Transformer 到底是什么？</title><link>https://mikeliu30.github.io/broken-boat/zh/post/transformer/</link><pubDate>Tue, 14 Apr 2026 00:00:00 +0000</pubDate><author>xxx@example.com (mikeliu30)</author><guid>https://mikeliu30.github.io/broken-boat/zh/post/transformer/</guid><description>
+<![CDATA[<h1>大模型的起源——Transformer 到底是什么？</h1><p>作者：mikeliu30（xxx@example.com）</p>
+        
+          <blockquote>
+<p>本来想直接上项目架构或 LLM 应用，但还是决定先打好基础。这篇文章的主角是大模型的「祖宗」——<strong>Transformer</strong>。</p>
+</blockquote>
+<hr>
+<h2 id="一切从-2017-年说起">
+<a class="header-anchor" href="#%e4%b8%80%e5%88%87%e4%bb%8e-2017-%e5%b9%b4%e8%af%b4%e8%b5%b7"></a>
+一切从 2017 年说起
+</h2><p>2017 年，Google 发表了一篇论文：<strong>《Attention is all you need》</strong>。</p>
+<p>就是这篇论文，提出了 Transformer 架构，直接催生了后来的 GPT、BERT、DeepSeek 这一整个大模型时代。</p>
+<p>没有它，就没有现在这些能聊天、写代码、画图的 AI。</p>
+<hr>
+<h2 id="为什么计算机理解语言这么难">
+<a class="header-anchor" href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e8%ae%a1%e7%ae%97%e6%9c%ba%e7%90%86%e8%a7%a3%e8%af%ad%e8%a8%80%e8%bf%99%e4%b9%88%e9%9a%be"></a>
+为什么计算机理解语言这么难？
+</h2><p>先来看一个绕口令：</p>
+<blockquote>
+<p><strong>货拉拉拉不拉拉布拉多</strong></p>
+</blockquote>
+<p>短短十个字，六个&quot;拉&quot;，你一眼就知道什么意思，但计算机表示：<strong>臣妾做不到啊。</strong></p>
+<p>问题在于，每个&quot;拉&quot;在不同位置代表不同的意思：</p>
+<table>
+  <thead>
+      <tr>
+          <th>词语</th>
+          <th>&ldquo;拉&quot;的含义</th>
+          <th>英文对应</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>货拉拉</td>
+          <td>拉货（物流平台）</td>
+          <td>carry / haul</td>
+      </tr>
+      <tr>
+          <td>拉不拉</td>
+          <td>拉扯、拖拽</td>
+          <td>drag / pull</td>
+      </tr>
+      <tr>
+          <td>拉布拉多</td>
+          <td>犬种名（专有名词）</td>
+          <td>Labrador</td>
+      </tr>
+  </tbody>
+</table>
+<p>中间的&rdquo;<strong>拉不拉</strong>&ldquo;必须结合前面的&quot;货拉拉&quot;和后面的&quot;拉布拉多&quot;才能准确理解，这对人来说是本能，对计算机来说却需要一整套机制来解决。</p>
+<p>这就是 Transformer 要解决的核心问题：<strong>让计算机理解一句话里每个词在上下文中的真实含义。</strong></p>
+<hr>
+<h2 id="第一步把文字变成数字token-与-embedding">
+<a class="header-anchor" href="#%e7%ac%ac%e4%b8%80%e6%ad%a5%e6%8a%8a%e6%96%87%e5%ad%97%e5%8f%98%e6%88%90%e6%95%b0%e5%ad%97token-%e4%b8%8e-embedding"></a>
+第一步：把文字变成数字——Token 与 Embedding
+</h2><p>计算机只认识 0 和 1，所以第一步是把文字转成数字。</p>
+<h3 id="token切词">
+<a class="header-anchor" href="#token%e5%88%87%e8%af%8d"></a>
+Token：切词
+</h3><p>首先把句子切分成一个个词块，每个词块叫一个 <strong>Token</strong>：</p>
+<pre tabindex="0"><code>货拉拉 | 拉不拉 | 拉布拉多
+</code></pre><h3 id="embedding让数字有语义">
+<a class="header-anchor" href="#embedding%e8%ae%a9%e6%95%b0%e5%ad%97%e6%9c%89%e8%af%ad%e4%b9%89"></a>
+Embedding：让数字有语义
+</h3><p>光把字变成编号（比如 Unicode）是不够的，因为纯数字之间没有任何语义关联。</p>
+<p>我们需要一种方式，让<strong>语义相近的词在数字空间里也靠得近</strong>。</p>
+<p>想象一个坐标系：</p>
+<ul>
+<li><strong>二维</strong>：X 轴表示&quot;是否与交通相关&rdquo;，Y 轴表示&quot;是否与动物相关&quot;</li>
+</ul>
+<p><img src="%E4%BA%8C%E7%BB%B4.jpg" alt="二维坐标系示意"></p>
+        
+        <hr><p>本文2026-04-14首发于<a href='https://mikeliu30.github.io/broken-boat/'>破船之家</a>，最后修改于2026-04-14</p>]]></description><category>技术</category></item></channel></rss>
