@@ -1,4 +1,48 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>技术 on 破船之家</title><link>https://mikeliu30.github.io/broken-boat/categories/%E6%8A%80%E6%9C%AF/</link><description>Recent content from 破船之家</description><generator>Hugo</generator><language>zh-CN</language><managingEditor>xxx@example.com (mikeliu30)</managingEditor><webMaster>xxx@example.com (mikeliu30)</webMaster><copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright><lastBuildDate>Tue, 14 Apr 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://mikeliu30.github.io/broken-boat/categories/%E6%8A%80%E6%9C%AF/index.xml" rel="self" type="application/rss+xml"/><item><title>大模型的起源——Transformer 到底是什么？</title><link>https://mikeliu30.github.io/broken-boat/zh/post/transformer/</link><pubDate>Tue, 14 Apr 2026 00:00:00 +0000</pubDate><author>xxx@example.com (mikeliu30)</author><guid>https://mikeliu30.github.io/broken-boat/zh/post/transformer/</guid><description>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>技术 on 破船之家</title><link>https://mikeliu30.github.io/broken-boat/categories/%E6%8A%80%E6%9C%AF/</link><description>Recent content from 破船之家</description><generator>Hugo</generator><language>zh-CN</language><managingEditor>xxx@example.com (mikeliu30)</managingEditor><webMaster>xxx@example.com (mikeliu30)</webMaster><copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright><lastBuildDate>Wed, 15 Apr 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://mikeliu30.github.io/broken-boat/categories/%E6%8A%80%E6%9C%AF/index.xml" rel="self" type="application/rss+xml"/><item><title>MiniMind 全栈源码拆解：从 0 到 RL 的完整训练链路（含代码与架构图）</title><link>https://mikeliu30.github.io/broken-boat/zh/post/minimind/</link><pubDate>Wed, 15 Apr 2026 00:00:00 +0000</pubDate><author>xxx@example.com (mikeliu30)</author><guid>https://mikeliu30.github.io/broken-boat/zh/post/minimind/</guid><description>
+<![CDATA[<h1>MiniMind 全栈源码拆解：从 0 到 RL 的完整训练链路（含代码与架构图）</h1><p>作者：mikeliu30（xxx@example.com）</p>
+        
+          <blockquote>
+<p>这篇文章基于本地项目 <code>D:/项目架构/LLM/minimind</code> 的完整源码阅读整理，不是泛泛而谈，而是按真实工程结构逐段拆解。</p>
+<p>参考仓库：<code>https://github.com/jingyaogong/minimind</code></p>
+<p>覆盖范围说明（先回答“是不是全部代码”）：</p>
+<ul>
+<li><strong>不是逐行罗列仓库里每一行代码</strong>，否则篇幅会失控，也不利于学习。</li>
+<li><strong>是覆盖了完整训练链路的核心代码</strong>：模型、数据、训练脚本、RL、rollout、推理、tokenizer。</li>
+<li>对新手最重要的“从哪里看、先跑什么、每一步会产出什么、出错怎么查”，本文都按工程流程展开。</li>
+</ul>
+</blockquote>
+<hr>
+<h2 id="目录">
+<a class="header-anchor" href="#%e7%9b%ae%e5%bd%95"></a>
+目录
+</h2><ol>
+<li>项目定位与核心结论</li>
+<li>新手先看：文件结构与阅读顺序</li>
+<li>主模型源码拆解（Dense + MoE）</li>
+<li>数据集与标签构造逻辑</li>
+<li>训练工具层（lr / ckpt / DDP / resume）</li>
+<li>各训练阶段源码（Pretrain / SFT / LoRA / DPO / PPO / GRPO / Agent RL / Distill）</li>
+<li>Rollout 引擎解耦（Torch / SGLang）</li>
+<li>推理脚本与部署路径</li>
+<li>Tokenizer 脚本设计</li>
+<li>README 里的关键实验图</li>
+<li>面向新手的完整实操步骤（含命令、代码入口、产物、排错）</li>
+<li>工程角度评价</li>
+</ol>
+<hr>
+<h2 id="一先说结论minimind-是什么">
+<a class="header-anchor" href="#%e4%b8%80%e5%85%88%e8%af%b4%e7%bb%93%e8%ae%baminimind-%e6%98%af%e4%bb%80%e4%b9%88"></a>
+一、先说结论：MiniMind 是什么
+</h2><p>MiniMind 是一个“小而全”的 LLM 训练工程：</p>
+<ul>
+<li><strong>模型层</strong>：手写 Decoder-only Transformer，支持 Dense 和 MoE</li>
+<li><strong>训练层</strong>：覆盖 Pretrain / SFT / LoRA / DPO / PPO / GRPO / Agentic RL / Distillation</li>
+<li><strong>工程层</strong>：支持 DDP、AMP、断点续训、rollout 引擎解耦</li>
+<li><strong>推理层</strong>：支持本地 PyTorch 权重和 Transformers 权重</li>
+</ul>
+<p>一句话总结：<strong>它是一个可训练、可复现、可扩展的微型 LLM 全流程模板。</strong></p>
+        
+        <hr><p>本文2026-04-15首发于<a href='https://mikeliu30.github.io/broken-boat/'>破船之家</a>，最后修改于2026-04-15</p>]]></description><category>技术</category></item><item><title>大模型的起源——Transformer 到底是什么？</title><link>https://mikeliu30.github.io/broken-boat/zh/post/transformer/</link><pubDate>Tue, 14 Apr 2026 00:00:00 +0000</pubDate><author>xxx@example.com (mikeliu30)</author><guid>https://mikeliu30.github.io/broken-boat/zh/post/transformer/</guid><description>
 <![CDATA[<h1>大模型的起源——Transformer 到底是什么？</h1><p>作者：mikeliu30（xxx@example.com）</p>
         
           <blockquote>
