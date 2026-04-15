@@ -2,7 +2,7 @@
 <![CDATA[<h1>MiniMind 全栈源码拆解：从 0 到 RL 的完整训练链路（含代码与架构图）</h1><p>作者：mikeliu30（xxx@example.com）</p>
         
           <blockquote>
-<p>这篇文章基于本地项目 <code>D:/项目架构/LLM/minimind</code> 的完整源码阅读整理，不是泛泛而谈，而是按真实工程结构逐段拆解。</p>
+<p>这篇文章基于参考项目的完整源码阅读整理，不是泛泛而谈，而是按真实工程结构逐段拆解。</p>
 <p>参考仓库：<code>https://github.com/jingyaogong/minimind</code></p>
 <p>覆盖范围说明（先回答“是不是全部代码”）：</p>
 <ul>
