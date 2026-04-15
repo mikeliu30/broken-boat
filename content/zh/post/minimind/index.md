@@ -7,7 +7,7 @@ cover: /broken-boat/zh/post/minimind/封面-训练过程.gif
 description: "按源码逐层拆解 MiniMind：模型结构、数据处理、预训练、SFT、LoRA、DPO、PPO、GRPO、Agentic RL、蒸馏、Rollout 引擎和推理接口，附关键代码与架构图。"
 ---
 
-> 这篇文章基于本地项目 `D:/项目架构/LLM/minimind` 的完整源码阅读整理，不是泛泛而谈，而是按真实工程结构逐段拆解。
+> 这篇文章基于参考项目的完整源码阅读整理，不是泛泛而谈，而是按真实工程结构逐段拆解。
 >
 > 参考仓库：`https://github.com/jingyaogong/minimind`
 >
