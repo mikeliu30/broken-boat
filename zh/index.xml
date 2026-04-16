@@ -1,4 +1,48 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>破船之家</title><link>https://mikeliu30.github.io/broken-boat/zh/</link><description>Recent content from 破船之家</description><generator>Hugo</generator><language>zh-CN</language><managingEditor>xxx@example.com (mikeliu30)</managingEditor><webMaster>xxx@example.com (mikeliu30)</webMaster><copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright><lastBuildDate>Wed, 15 Apr 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://mikeliu30.github.io/broken-boat/zh/index.xml" rel="self" type="application/rss+xml"/><item><title>Travel_Agent2Agent 全栈源码拆解：A2A + MCP 多 Agent 旅行系统从架构到落地</title><link>https://mikeliu30.github.io/broken-boat/zh/post/travel-agent2agent/</link><pubDate>Wed, 15 Apr 2026 00:00:00 +0000</pubDate><author>xxx@example.com (mikeliu30)</author><guid>https://mikeliu30.github.io/broken-boat/zh/post/travel-agent2agent/</guid><description>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>破船之家</title><link>https://mikeliu30.github.io/broken-boat/zh/</link><description>Recent content from 破船之家</description><generator>Hugo</generator><language>zh-CN</language><managingEditor>xxx@example.com (mikeliu30)</managingEditor><webMaster>xxx@example.com (mikeliu30)</webMaster><copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright><lastBuildDate>Thu, 16 Apr 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://mikeliu30.github.io/broken-boat/zh/index.xml" rel="self" type="application/rss+xml"/><item><title>Enterprise_RAG 全栈源码拆解：Agent + RAG 企业级知识问答系统从架构到落地</title><link>https://mikeliu30.github.io/broken-boat/zh/post/enterprise-rag/</link><pubDate>Thu, 16 Apr 2026 00:00:00 +0000</pubDate><author>xxx@example.com (mikeliu30)</author><guid>https://mikeliu30.github.io/broken-boat/zh/post/enterprise-rag/</guid><description>
+<![CDATA[<h1>Enterprise_RAG 全栈源码拆解：Agent + RAG 企业级知识问答系统从架构到落地</h1><p>作者：mikeliu30（xxx@example.com）</p>
+        
+          <blockquote>
+<p>这篇文章基于 Enterprise_RAG 的完整源码阅读整理。</p>
+<p>参考仓库：<code>https://github.com/kerro99920/Enterprise_RAG</code></p>
+<p>覆盖范围说明：</p>
+<ul>
+<li>不是逐行罗列仓库每一行代码。</li>
+<li>但覆盖了完整主链路：RAG Pipeline（9阶段）→ Agent 编排 → 工具体系 → 三路检索融合。</li>
+<li>重点是让新手知道&quot;Agent + RAG 是什么、怎么跑、每一步产物是什么、出错怎么查&quot;。</li>
+</ul>
+</blockquote>
+<hr>
+<h2 id="目录">
+<a class="header-anchor" href="#%e7%9b%ae%e5%bd%95"></a>
+目录
+</h2><ol>
+<li>项目定位与核心结论</li>
+<li>新手先看：文件结构与阅读顺序</li>
+<li>Agent + RAG 是什么（完整解读）</li>
+<li>整体架构：三路检索融合设计</li>
+<li>RAG Pipeline 九阶段详解</li>
+<li>Agent 智能体系统（周报/成本/进度/安全/风险）</li>
+<li>工具层设计（25个专业工具）</li>
+<li>三路检索源码拆解（BM25 + Vector + Graph）</li>
+<li>数据模型与存储设计</li>
+<li>配置、启动脚本、健康检查</li>
+<li>面向新手的完整实操步骤（含命令、入口、产物、排错）</li>
+<li>工程点评与改进建议</li>
+</ol>
+<hr>
+<h2 id="一项目定位与核心结论">
+<a class="header-anchor" href="#%e4%b8%80%e9%a1%b9%e7%9b%ae%e5%ae%9a%e4%bd%8d%e4%b8%8e%e6%a0%b8%e5%bf%83%e7%bb%93%e8%ae%ba"></a>
+一、项目定位与核心结论
+</h2><p>Enterprise_RAG 是一个<strong>面向建筑/工程行业的私有化 RAG 智能问答 + Agent 分析平台</strong>：</p>
+<ul>
+<li><strong>RAG 层</strong>：三路混合检索（BM25 + Vector + Graph）+ Rerank + LLM 生成</li>
+<li><strong>Agent 层</strong>：5 个专业 Agent（周报/成本/进度/安全/风险）+ 25 个工具函数</li>
+<li><strong>存储层</strong>：PostgreSQL（元数据）+ Milvus（向量）+ Neo4j（图谱）+ Redis（缓存）</li>
+<li><strong>工程层</strong>：FastAPI + Docker Compose + 完整测试 + 优雅降级</li>
+</ul>
+<p>一句话总结：<strong>它不是&quot;简单的文档问答&quot;，而是&quot;三路检索 + Agent 编排的企业级知识管理系统&quot;。</strong></p>
+        
+        <hr><p>本文2026-04-16首发于<a href='https://mikeliu30.github.io/broken-boat/'>破船之家</a>，最后修改于2026-04-16</p>]]></description><category>技术</category></item><item><title>Travel_Agent2Agent 全栈源码拆解：A2A + MCP 多 Agent 旅行系统从架构到落地</title><link>https://mikeliu30.github.io/broken-boat/zh/post/travel-agent2agent/</link><pubDate>Wed, 15 Apr 2026 00:00:00 +0000</pubDate><author>xxx@example.com (mikeliu30)</author><guid>https://mikeliu30.github.io/broken-boat/zh/post/travel-agent2agent/</guid><description>
 <![CDATA[<h1>Travel_Agent2Agent 全栈源码拆解：A2A + MCP 多 Agent 旅行系统从架构到落地</h1><p>作者：mikeliu30（xxx@example.com）</p>
         
           <blockquote>
