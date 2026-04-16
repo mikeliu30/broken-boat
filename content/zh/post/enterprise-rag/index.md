@@ -3,6 +3,7 @@ title: "Enterprise_RAG 全栈源码拆解：Agent + RAG 企业级知识问答系
 date: 2026-04-16
 categories: ["技术"]
 tags: ["RAG", "Agent", "Milvus", "Neo4j", "BM25", "Vector", "Knowledge Graph", "LLM", "FastAPI"]
+cover: /broken-boat/zh/post/enterprise-rag/agent+rag.png
 description: "按源码逐层拆解 Enterprise_RAG：Agent + RAG 是什么、三路检索（BM25 + Vector + Graph）、9阶段 Pipeline、Agent 编排、工具体系、完整实操步骤。"
 ---
 
