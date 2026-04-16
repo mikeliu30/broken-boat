@@ -3,6 +3,7 @@ title: "Travel_Agent2Agent 全栈源码拆解：A2A + MCP 多 Agent 旅行系统
 date: 2026-04-15
 categories: ["技术"]
 tags: ["A2A", "MCP", "Multi-Agent", "Python", "LangChain", "Streamlit", "MySQL"]
+cover: /broken-boat/zh/post/travel-agent2agent/A2A.png
 description: "按源码逐层拆解 Travel_Agent2Agent：A2A 协议、MCP 数据服务、Weather/Ticket/Order 三类 Agent、SQL 与订单链路、启动与排障，附新手可执行步骤。"
 ---
 
