@@ -31,6 +31,7 @@ description: "按源码逐层拆解 MiniMind：模型结构、数据处理、预
 10. README 里的关键实验图
 11. 面向新手的完整实操步骤（含命令、代码入口、产物、排错）
 12. 工程角度评价
+13. 完整代码索引（对照 GitHub 查看）
 ---
 
 ## 一、先说结论：MiniMind 是什么
@@ -691,8 +692,114 @@ python ../eval_llm.py --weight full_sft --lora_weight lora
 
 ---
 
+## 十三、完整代码索引（对照 GitHub 查看）
+
+本文覆盖了核心训练链路的关键代码，但为了保持可读性，未逐行罗列所有文件。下面是完整代码结构索引，方便你对照 GitHub 仓库深入学习。
+
+### 13.1 模型层（`model/`）
+
+| 文件 | 核心内容 | 本文覆盖情况 |
+|------|---------|-------------|
+| `model_minimind.py` | Transformer 主体、Attention、FFN、MoE、RoPE、generate | ✅ 已覆盖核心实现 |
+| `model_lora.py` | LoRA 注入、合并、参数冻结 | ✅ 已覆盖核心逻辑 |
+
+**完整查看**：`https://github.com/jingyaogong/minimind/tree/main/model`
+
+### 13.2 数据层（`dataset/`）
+
+| 文件 | 核心内容 | 本文覆盖情况 |
+|------|---------|-------------|
+| `lm_dataset.py` | PretrainDataset、SFTDataset、DPODataset、RLAIFDataset、AgentRLDataset | ✅ 已覆盖标签构造逻辑 |
+
+**完整查看**：`https://github.com/jingyaogong/minimind/tree/main/dataset`
+
+### 13.3 训练层（`trainer/`）
+
+| 文件 | 核心内容 | 本文覆盖情况 |
+|------|---------|-------------|
+| `trainer_utils.py` | 学习率调度、日志、checkpoint、续训、DDP 工具 | ✅ 已覆盖核心工具函数 |
+| `train_pretrain.py` | 预训练主循环、loss 计算、梯度累积 | ✅ 已覆盖训练流程 |
+| `train_full_sft.py` | 全参数 SFT | ✅ 已覆盖核心差异 |
+| `train_lora.py` | LoRA 微调、参数冻结 | ✅ 已覆盖核心逻辑 |
+| `train_dpo.py` | DPO 损失计算、参考模型冻结 | ✅ 已覆盖核心公式 |
+| `train_ppo.py` | PPO、Critic 模型、GAE 计算 | ✅ 已覆盖核心算法 |
+| `train_grpo.py` | GRPO/CISPO、组内优势标准化 | ✅ 已覆盖核心逻辑 |
+| `train_agent.py` | Agentic RL、多轮 rollout、工具调用 | ✅ 已覆盖核心链路 |
+| `train_distillation.py` | 知识蒸馏、温度参数 | ✅ 已覆盖核心公式 |
+| `train_tokenizer.py` | BPE tokenizer 训练示例 | ✅ 已覆盖核心配置 |
+| `rollout_engine.py` | Rollout 引擎抽象、Torch/SGLang 实现 | ✅ 已覆盖接口设计 |
+
+**完整查看**：`https://github.com/jingyaogong/minimind/tree/main/trainer`
+
+### 13.4 推理层
+
+| 文件 | 核心内容 | 本文覆盖情况 |
+|------|---------|-------------|
+| `eval_llm.py` | 推理入口、权重加载、对话循环 | ✅ 已覆盖核心参数 |
+
+**完整查看**：`https://github.com/jingyaogong/minimind/blob/main/eval_llm.py`
+
+### 13.5 配置与工具
+
+| 文件/目录 | 核心内容 | 本文覆盖情况 |
+|----------|---------|-------------|
+| `README.md` | 官方说明、实验记录、Benchmark | ✅ 已引用关键图表 |
+| `requirements.txt` | 依赖列表 | ⚠️ 未详细展开 |
+| `configs/` | 模型配置文件 | ⚠️ 未详细展开 |
+| `scripts/` | 启动脚本、数据处理脚本 | ⚠️ 未详细展开 |
+
+**完整查看**：`https://github.com/jingyaogong/minimind`
+
+### 13.6 未在本文详细展开的部分
+
+以下内容在 GitHub 仓库中有完整实现，但本文为保持聚焦未详细展开：
+
+1. **数据预处理脚本**（`scripts/data_process/`）
+   - 原始数据清洗
+   - 格式转换
+   - 分词统计
+
+2. **评估脚本**（`eval/`）
+   - Benchmark 测试
+   - 指标计算
+   - 结果可视化
+
+3. **部署相关**（`deploy/`）
+   - ONNX 导出
+   - 量化脚本
+   - 推理优化
+
+4. **实验配置**（`configs/`）
+   - 不同规模模型的超参数
+   - 数据集配置
+   - 训练策略配置
+
+### 13.7 如何高效阅读完整代码
+
+**推荐顺序**：
+
+1. **先跑通本文的实操步骤**（第十一章）
+2. **遇到问题时查阅对应源文件**（用本索引定位）
+3. **深入研究感兴趣的模块**（如 MoE、Agent RL）
+4. **对比不同训练阶段的差异**（如 SFT vs DPO）
+
+**阅读技巧**：
+
+- 用 IDE 的”跳转到定义”功能追踪调用链
+- 对比 `train_pretrain.py` 和 `train_full_sft.py` 的 diff
+- 在本地修改代码并观察训练曲线变化
+- 参考 README 中的实验记录理解超参数影响
+
+---
+
 ## 结语
 
-MiniMind 的真正价值，不是参数量小，而是它把“模型训练这件事”从黑盒拆成了可直接阅读和修改的白盒代码。
+MiniMind 的真正价值，不是参数量小，而是它把”模型训练这件事”从黑盒拆成了可直接阅读和修改的白盒代码。
 
-如果你想从“会调 API”跨到“能看懂并改训练系统”，这个项目是很好的跳板。
+**本文的定位**：
+- ✅ 覆盖完整训练链路的核心代码和关键逻辑
+- ✅ 提供新手可执行的实操步骤和排错指南
+- ✅ 建立代码索引，方便对照 GitHub 深入学习
+- ❌ 不是逐行代码注释（那会失控且不利于理解）
+
+如果你想从”会调 API”跨到”能看懂并改训练系统”，这个项目是很好的跳板。
