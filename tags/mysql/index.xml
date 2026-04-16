@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>MySQL on 破船之家</title><link>https://mikeliu30.github.io/broken-boat/tags/mysql/</link><description>Recent content from 破船之家</description><generator>Hugo</generator><language>zh-CN</language><managingEditor>xxx@example.com (mikeliu30)</managingEditor><webMaster>xxx@example.com (mikeliu30)</webMaster><copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright><lastBuildDate>Wed, 15 Apr 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://mikeliu30.github.io/broken-boat/tags/mysql/index.xml" rel="self" type="application/rss+xml"/><item><title>Travel_Agent2Agent 全栈源码拆解：A2A + MCP 多 Agent 旅行系统从架构到落地</title><link>https://mikeliu30.github.io/broken-boat/zh/post/travel-agent2agent/</link><pubDate>Wed, 15 Apr 2026 00:00:00 +0000</pubDate><author>xxx@example.com (mikeliu30)</author><guid>https://mikeliu30.github.io/broken-boat/zh/post/travel-agent2agent/</guid><description>
+<![CDATA[<h1>Travel_Agent2Agent 全栈源码拆解：A2A + MCP 多 Agent 旅行系统从架构到落地</h1><p>作者：mikeliu30（xxx@example.com）</p>
+        
+          <blockquote>
+<p>这篇文章基于项目 A2A 的完整源码阅读整理。</p>
+<p>参考仓库：<code>https://github.com/kerro99920/Travel_Agent2Agent</code></p>
+<p>覆盖范围说明：</p>
+<ul>
+<li>不是逐行罗列仓库每一行代码。</li>
+<li>但覆盖了完整主链路：入口层（CLI/Web）→ 意图识别 → A2A Agent → MCP 工具 → MySQL。</li>
+<li>重点是让新手知道“先看什么、怎么跑、每一步产物是什么、出错怎么查”。</li>
+</ul>
+</blockquote>
+<hr>
+<h2 id="目录">
+<a class="header-anchor" href="#%e7%9b%ae%e5%bd%95"></a>
+目录
+</h2><ol>
+<li>项目定位与一句话结论</li>
+<li>新手先看：文件结构与阅读顺序</li>
+<li>整体架构：A2A + MCP 是怎么协作的</li>
+<li>双入口层：CLI 与 Streamlit Web</li>
+<li>意图识别与 Prompt 体系</li>
+<li>Agent 层源码拆解（Weather / Ticket / Order）</li>
+<li>MCP 层源码拆解（Weather / Ticket / Order）</li>
+<li>数据库与订单事务链路</li>
+<li>配置、启动脚本、健康检查与测试</li>
+<li>面向新手的完整实操步骤（含命令、入口、产物、排错）</li>
+<li>工程点评与改进建议</li>
+</ol>
+<hr>
+<h2 id="一项目定位与一句话结论">
+<a class="header-anchor" href="#%e4%b8%80%e9%a1%b9%e7%9b%ae%e5%ae%9a%e4%bd%8d%e4%b8%8e%e4%b8%80%e5%8f%a5%e8%af%9d%e7%bb%93%e8%ae%ba"></a>
+一、项目定位与一句话结论
+</h2><p>Travel_Agent2Agent（文档中也叫 SmartVoyage）是一个典型的<strong>多 Agent 协同业务系统</strong>：</p>
+<ul>
+<li>前端入口支持 CLI + Streamlit</li>
+<li>中间层按业务拆成 3 个 Agent：天气、票务、订票</li>
+<li>数据服务层拆成 3 个 MCP 服务</li>
+<li>落地到 MySQL 表（天气、票务、订单）</li>
+</ul>
+<p>一句话总结：<strong>它不是“单模型聊天机器人”，而是“协议驱动的可拆分业务系统模板”。</strong></p>
+        
+        <hr><p>本文2026-04-15首发于<a href='https://mikeliu30.github.io/broken-boat/'>破船之家</a>，最后修改于2026-04-15</p>]]></description><category>技术</category></item></channel></rss>
